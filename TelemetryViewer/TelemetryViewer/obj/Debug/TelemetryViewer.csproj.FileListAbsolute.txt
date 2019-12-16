@@ -1,0 +1,15 @@
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\bin\Debug\TelemetryViewer.exe.config
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\bin\Debug\TelemetryViewer.exe
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\bin\Debug\TelemetryViewer.pdb
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer.csprojAssemblyReference.cache
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\MainWindow.g.cs
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\App.g.cs
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer_MarkupCompile.cache
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer_MarkupCompile.lref
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\MainWindow.baml
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer.g.resources
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer.Properties.Resources.resources
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer.csproj.GenerateResource.cache
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer.exe
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\TelemetryViewer.pdb
+C:\Users\gunra\source\repos\FSAE\RTT\TelemetryViewer\TelemetryViewer\obj\Debug\App.baml

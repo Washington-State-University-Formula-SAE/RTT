@@ -1,0 +1,11 @@
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\bin\Debug\netcoreapp3.0\RTT3.exe
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\bin\Debug\netcoreapp3.0\RTT3.deps.json
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\bin\Debug\netcoreapp3.0\RTT3.runtimeconfig.json
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\bin\Debug\netcoreapp3.0\RTT3.runtimeconfig.dev.json
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\bin\Debug\netcoreapp3.0\RTT3.dll
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\bin\Debug\netcoreapp3.0\RTT3.pdb
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\obj\Debug\netcoreapp3.0\RTT3.csprojAssemblyReference.cache
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\obj\Debug\netcoreapp3.0\RTT3.AssemblyInfoInputs.cache
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\obj\Debug\netcoreapp3.0\RTT3.AssemblyInfo.cs
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\obj\Debug\netcoreapp3.0\RTT3.dll
+C:\Users\gunra\source\repos\FSAE\RTT\RTT3\RTT3\obj\Debug\netcoreapp3.0\RTT3.pdb
