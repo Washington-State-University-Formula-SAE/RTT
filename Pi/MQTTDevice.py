@@ -15,20 +15,21 @@ def on_log(client, userdata, level, buf):
     print("log: ",buf)
 
 class MQTTDevice:
-    def __init__(self, sas_token, iot_hub_name, device_id):
-        self.iot_hub_name = iot_hub_name
-        self.sas_token = sas_token
+    sas_token = "SharedAccessSignature sr=hackathon2020fsae.azure-devices.net&sig=u7v565eWC1MMstYzDcl5kCXepcluJh8zcFko7SKTieg%3D&skn=iothubowner&se=1582764444"
+    iot_hub_name = "hackathon2020fsae"
+    def __init__(self, device_id):
+        self.device_id = device_id
+
         self.client = mqtt.Client(client_id=device_id, protocol=mqtt.MQTTv311,  clean_session=False)
         self.client.on_log = on_log
         self.client.tls_set_context(context=None)
-        self.device_id = device_id
 
-        self.username = "{}.azure-devices.net/{}/api-version=2018-06-30".format(iot_hub_name, device_id)
-        self.client.username_pw_set(username=self.username, password=sas_token)
+        self.username = "{}.azure-devices.net/{}/api-version=2018-06-30".format(self.iot_hub_name, self.device_id)
+        self.client.username_pw_set(username=self.username, password=self.sas_token)
 
         # Connect to the Azure IoT Hub
         self.client.on_connect = on_connect
-        self.client.connect(iot_hub_name+".azure-devices.net", port=8883)
+        self.client.connect(self.iot_hub_name+".azure-devices.net", port=8883)
 
         # Publish 
         self.client.publish("devices/{device_id}/messages/events/".format(device_id=device_id), payload="{}", qos=0, retain=False)
@@ -39,38 +40,8 @@ class MQTTDevice:
         self.client.subscribe("devices/{device_id}/messages/devicebound/#".format(device_id=device_id))
         self.client.subscribe("$iothub/twin/PATCH/properties/desired/#")
         self.client.subscribe("$iothub/methods/POST/#")
-        #self.client.loop_start()
 
-    def SendMessage(self, topic, payload):
-        #self.client.loop_stop()
+    def SendMessage(self, payload):
         self.client.publish("devices/{device_id}/messages/events/".format(device_id=self.device_id), payload=payload, qos=0, retain=False)
-        #self.client.loop_start()
     def LoopForever(self):
         self.client.loop_forever()
-
-    ##device_id = "MyPythonDevice"
-    ##iot_hub_name = "fsaehackathon2020"
-    ##sas_token = "SharedAccessSignature sr=fsaehackathon2020.azure-devices.net%2Fdevices%2FMyPythonDevice&sig=9pmtcpFdf%2Fd5CpZrmRkeZz2rhc3kVerIgbxUl0QraXY%3D&se=1582758616"
-    ##client = mqtt.Client(client_id=device_id, protocol=mqtt.MQTTv311,  clean_session=False)
-    #client.on_log = on_log
-    #client.tls_set_context(context=None)
-
-    # Set up client credentials
-    #username = "{}.azure-devices.net/{}/api-version=2018-06-30".format(iot_hub_name, device_id)
-    #client.username_pw_set(username=username, password=sas_token)
-
-    # Connect to the Azure IoT Hub
-    #client.on_connect = on_connect
-    #client.connect(iot_hub_name+".azure-devices.net", port=8883)
-
-    # Publish 
-    #client.publish("devices/{device_id}/messages/events/".format(device_id=device_id), payload="{}", qos=0, retain=False)
-
-    # Subscribing on the topic , 
-    #client.on_message = on_message
-    #client.on_subscribe = on_subscribe 
-    #client.subscribe("devices/{device_id}/messages/devicebound/#".format(device_id=device_id))
-    #client.subscribe("$iothub/twin/PATCH/properties/desired/#")
-    #client.subscribe("$iothub/methods/POST/#")
-
-    #client.loop_forever()
