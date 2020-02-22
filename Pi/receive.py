@@ -16,11 +16,10 @@ can0 = can.interface.Bus(channel = 'can0', bustype = 'socketcan_ctypes')
 # Receive messages
 while True:
     msg = can0.recv(30.0)
-    if not None:
+    if msg:
         msg.split()
-        
-    print (msg)
-    if msg is None:
+        print (msg)     
+    else:
         print('No message was received')
     
        
