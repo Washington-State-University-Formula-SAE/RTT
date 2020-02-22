@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\RealTimeTelemetry",
+    "\\RealTimeTelemetry\\Models"
   ],
-  "SelectedNode": "\\Arduino",
+  "SelectedNode": "\\RealTimeTelemetry\\RealTimeTelemetry.sln",
   "PreviewInSolutionExplorer": false
 }
