@@ -21,6 +21,7 @@ class MQTTDevice:
         self.client = mqtt.Client(client_id=device_id, protocol=mqtt.MQTTv311,  clean_session=False)
         self.client.on_log = on_log
         self.client.tls_set_context(context=None)
+        self.device_id = device_id
 
         self.username = "{}.azure-devices.net/{}/api-version=2018-06-30".format(iot_hub_name, device_id)
         self.client.username_pw_set(username=self.username, password=sas_token)
@@ -38,9 +39,12 @@ class MQTTDevice:
         self.client.subscribe("devices/{device_id}/messages/devicebound/#".format(device_id=device_id))
         self.client.subscribe("$iothub/twin/PATCH/properties/desired/#")
         self.client.subscribe("$iothub/methods/POST/#")
+        #self.client.loop_start()
 
     def SendMessage(self, topic, payload):
-        self.client.publish(topic, payload=payload, qos=0, retain=False)
+        #self.client.loop_stop()
+        self.client.publish("devices/{device_id}/messages/events/".format(device_id=self.device_id), payload=payload, qos=0, retain=False)
+        #self.client.loop_start()
     def LoopForever(self):
         self.client.loop_forever()
 

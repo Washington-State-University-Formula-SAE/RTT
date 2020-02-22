@@ -46,7 +46,7 @@ namespace RTTWeb.Data
             {
                 e.Cancel = true;
                 cts.Cancel();
-                Console.WriteLine("Exiting...");
+                System.Diagnostics.Debug.WriteLine("Exiting...");
             };
 
 
@@ -67,11 +67,11 @@ namespace RTTWeb.Data
             // For the purposes of this sample, read only messages sent since 
             // the time the receiver is created. Typically, you don't want to skip any messages.
             var eventHubReceiver = s_eventHubClient.CreateReceiver("$Default", partition, EventPosition.FromEnqueuedTime(DateTime.Now));
-            Console.WriteLine("Create receiver on partition: " + partition);
+            System.Diagnostics.Debug.WriteLine("Create receiver on partition: " + partition);
             while (true)
             {
                 if (ct.IsCancellationRequested) break;
-                Console.WriteLine("Listening for messages on: " + partition);
+                System.Diagnostics.Debug.WriteLine("Listening for messages on: " + partition);
                 // Check for EventData - this methods times out if there is nothing to retrieve.
                 var events = await eventHubReceiver.ReceiveAsync(100);
 
@@ -83,25 +83,21 @@ namespace RTTWeb.Data
 
 
                     string data = Encoding.UTF8.GetString(eventData.Body.Array);
-                    Console.WriteLine("Message received on partition {0}:", partition);
-                    Console.WriteLine("  {0}:", data);
-                    Console.WriteLine("Application properties (set by device):");
+                    System.Diagnostics.Debug.WriteLine("Message received on partition {0}:", partition);
+                    System.Diagnostics.Debug.WriteLine("  {0}:", data);
+                    System.Diagnostics.Debug.WriteLine("Application properties (set by device):");
                     foreach (var prop in eventData.Properties)
                     {
-                        Console.WriteLine("  {0}: {1}", prop.Key, prop.Value);
+                        System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
                     }
-                    Console.WriteLine("System properties (set by IoT Hub):");
+                    System.Diagnostics.Debug.WriteLine("System properties (set by IoT Hub):");
                     foreach (var prop in eventData.SystemProperties)
                     {
-                        Console.WriteLine("  {0}: {1}", prop.Key, prop.Value);
+                        System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
                     }
                 }
             }
         }
-    }
-    class ReadDeviceToCloudMessages
-    {
-        
     }
 }
 
