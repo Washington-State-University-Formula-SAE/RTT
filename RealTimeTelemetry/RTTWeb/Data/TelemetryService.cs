@@ -58,6 +58,7 @@ namespace RTTWeb.Data
             {
                 tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
             }
+            tm.EngineRPM = new EngineRPM(); //Todo change this to null!
 
         }
 
@@ -83,31 +84,19 @@ namespace RTTWeb.Data
 
                 foreach (EventData eventData in events)
                 {
-
-
                     string data = Encoding.UTF8.GetString(eventData.Body.Array);
-                    System.Diagnostics.Debug.WriteLine("Message received on partition {0}:", partition);
-                    System.Diagnostics.Debug.WriteLine("  {0}:", data);
-                    System.Diagnostics.Debug.WriteLine("Application properties (set by device):");
-
-                    foreach (var prop in eventData.Properties)
+                    if (eventData.SystemProperties.ContainsKey("iothub-connection-device-id"))
                     {
-                        System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
-                    }
-                    System.Diagnostics.Debug.WriteLine("System properties (set by IoT Hub):");
-                    foreach (var prop in eventData.SystemProperties)
-                    {
-                        if (prop.Key == "iothub-connection-device-id")
+                        switch (eventData.SystemProperties["iothub-connection-device-id"])
                         {
-                            if (prop.Value.ToString() == "EngineRPM")
-                            {
-                                tm.EngineRPM.RPM = Convert.ToInt32(data);
-                                //tm.EngineRPM.TimeStamp = ;
+                            case "EngineRPM":
+                                EngineRPM erpm = new EngineRPM();
+                                erpm.RPM = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
+                                erpm.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
+                                tm.EngineRPM = erpm;
                                 ModelChanged();
-                            }
+                                break;
                         }
-
-                        System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
                     }
                 }
             }
