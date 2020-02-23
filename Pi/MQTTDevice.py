@@ -31,9 +31,6 @@ class MQTTDevice:
         self.client.on_connect = on_connect
         self.client.connect(self.iot_hub_name+".azure-devices.net", port=8883)
 
-        # Publish 
-        self.client.publish("devices/{device_id}/messages/events/".format(device_id=device_id), payload="{}", qos=0, retain=False)
-
         # Subscribing on the topic , 
         self.client.on_message = on_message
         self.client.on_subscribe = on_subscribe 

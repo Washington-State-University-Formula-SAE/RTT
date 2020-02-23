@@ -9,6 +9,16 @@
 
 @code {
     private int currentCount = 0;
+    protected override void OnInitialized()
+    {
+        telem.ModelChanged += OnModelChange;
+        base.OnInitialized();
+    }
+
+    public void OnModelChange()
+    {
+        this.StateHasChanged();
+    }
 
     private void IncrementCount()
     {

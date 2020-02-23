@@ -31,6 +31,9 @@ namespace RTTWeb.Data
         private readonly static string s_iotHubSasKeyName = "service";
         private static EventHubClient s_eventHubClient;
         public TelemetryModel tm = new TelemetryModel();
+
+        public delegate void EventHandler();
+        public event EventHandler ModelChanged = delegate { };
         public TelemetryService()
         {
             var connectionString = new EventHubsConnectionStringBuilder(new Uri(s_eventHubsCompatibleEndpoint), s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey);
@@ -100,7 +103,10 @@ namespace RTTWeb.Data
                         if (prop.Key == "iothub-connection-device-id")
                         {
                             if (prop.Value.ToString() == "EngineRPM")
+                            {
                                 tm.EngineRpm = Convert.ToInt32(data);
+                                ModelChanged();
+                            }
                         }
 
                         System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
