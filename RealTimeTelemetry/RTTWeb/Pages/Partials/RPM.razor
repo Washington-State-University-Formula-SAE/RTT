@@ -53,7 +53,7 @@
 
         // ...
 
-        System.Timers.Timer timer = new System.Timers.Timer(1000);   //initial start after 1 second
+        System.Timers.Timer timer = new System.Timers.Timer(10);   //initial start after 1 second
         timer.Elapsed += new System.Timers.ElapsedEventHandler(TimerElapsedMethod);
         timer.Start();
     }
