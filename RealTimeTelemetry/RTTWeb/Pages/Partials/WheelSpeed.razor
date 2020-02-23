@@ -14,13 +14,16 @@
 
 @inject TelemetryService telem
 
-<ChartJs.Blazor.Charts.ChartJsLineChart @ref="_chart" Config="_config" Width="600" Height="300" />
+<ChartJs.Blazor.Charts.ChartJsLineChart @ref="_chart" Config="_config" Width="1200" Height="300" />
 
 @code {
     private int num = 0;
     private LineConfig _config;
     private ChartJsLineChart _chart;
-    LineDataset<TimeTuple<int>> _tempDataSet;
+    LineDataset<TimeTuple<int>> _frDataSet;
+    LineDataset<TimeTuple<int>> _flDataSet;
+    LineDataset<TimeTuple<int>> _rrDataSet;
+    LineDataset<TimeTuple<int>> _rlDataSet;
 
     protected override void OnInitialized()
     {
@@ -32,7 +35,7 @@
                 Title = new OptionsTitle
                 {
                     Display = true,
-                    Text = "Line Chart"
+                    Text = "Wheel Speed"
                 },
                 Legend = new Legend
                 {
@@ -80,11 +83,44 @@
             }
         };
 
-        _tempDataSet = new LineDataset<TimeTuple<int>>
+        _frDataSet = new LineDataset<TimeTuple<int>>
         {
             BackgroundColor = ColorUtil.RandomColorString(),
             BorderColor = ColorUtil.RandomColorString(),
-            Label = "Wheel Speed",
+            Label = "FR",
+            Fill = false,
+            BorderWidth = 2,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False
+        };
+        _flDataSet = new LineDataset<TimeTuple<int>>
+        {
+            BackgroundColor = ColorUtil.RandomColorString(),
+            BorderColor = ColorUtil.RandomColorString(),
+            Label = "FL",
+            Fill = false,
+            BorderWidth = 2,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False
+        };
+        _rrDataSet = new LineDataset<TimeTuple<int>>
+        {
+            BackgroundColor = ColorUtil.RandomColorString(),
+            BorderColor = ColorUtil.RandomColorString(),
+            Label = "RR",
+            Fill = false,
+            BorderWidth = 2,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False
+        };
+        _rlDataSet = new LineDataset<TimeTuple<int>>
+        {
+            BackgroundColor = ColorUtil.RandomColorString(),
+            BorderColor = ColorUtil.RandomColorString(),
+            Label = "RL",
             Fill = false,
             BorderWidth = 2,
             PointRadius = 3,
@@ -94,7 +130,10 @@
 
 
 
-        _config.Data.Datasets.Add(_tempDataSet);
+        _config.Data.Datasets.Add(_frDataSet);
+        _config.Data.Datasets.Add(_flDataSet);
+        _config.Data.Datasets.Add(_rrDataSet);
+        _config.Data.Datasets.Add(_rlDataSet);
 
         // ...
 
@@ -108,11 +147,17 @@
         {
             return;
         }
-        if (_tempDataSet.Data.Count > 10)
+        if (_frDataSet.Data.Count > 10)
         {
-            _tempDataSet.RemoveAt(0);
+            _frDataSet.RemoveAt(0);
+            _flDataSet.RemoveAt(0);
+            _rrDataSet.RemoveAt(0);
+            _rlDataSet.RemoveAt(0);
         }
-        _tempDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.VehicleRPM.RPM));
+        _frDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.FrontPassenger));
+        _flDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.FrontDriver));
+        _rrDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.RearPassenger));
+        _rlDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.RearDriver));
 
         // Update the UI
         this.StateHasChanged();

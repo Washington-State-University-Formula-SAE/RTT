@@ -14,7 +14,7 @@
 
 @inject TelemetryService telem
 
-<ChartJs.Blazor.Charts.ChartJsLineChart @ref="_chart" Config="_config" Width="600" Height="300" />
+<ChartJs.Blazor.Charts.ChartJsLineChart @ref="_chart" Config="_config" Width="1200" Height="300" />
 
 @code {
     private int num = 0;
@@ -32,7 +32,7 @@
                 Title = new OptionsTitle
                 {
                     Display = true,
-                    Text = "Line Chart"
+                    Text = "RPM"
                 },
                 Legend = new Legend
                 {
