@@ -1,0 +1,37 @@
+﻿@page "/telemetry"
+
+@using RTTWeb.Data
+
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Enums
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
+@using ChartJs.Blazor.ChartJS.Common.Handlers
+@using ChartJs.Blazor.ChartJS.Common.Time
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.Util
+
+@inject TelemetryService telem
+
+<ChartJs.Blazor.Charts.ChartJsLineChart @ref="_chart"/>
+
+@code {
+
+    ChartJs.Blazor.Charts.ChartJsLineChart _chart;
+
+    protected override void OnInitialized()
+    {
+        System.Timers.Timer timer = new System.Timers.Timer(10);   //initial start after 0.01 second
+        timer.Elapsed += new System.Timers.ElapsedEventHandler(TimerElapsedMethod);
+        timer.Start();
+    }
+
+    private void TimerElapsedMethod(object sender, System.Timers.ElapsedEventArgs e)
+    {
+        //_config.Data.Datasets[0].Data[0]++;
+        //_pieChartJs.Update();
+        _chart.Update();
+    }
+}
