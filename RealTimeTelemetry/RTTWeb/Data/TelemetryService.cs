@@ -119,10 +119,13 @@ namespace RTTWeb.Data
                                 break;
                             case "wheelSpeed":
                                 WheelSpeed wheelSpeed = new WheelSpeed();
-                                /*wheelSpeed.FrontDriver = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
+                                string[] allWheels = Encoding.UTF8.GetString(eventData.Body.Array).Split(',');
+                                wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[0]);
+                                wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[1]);
+                                wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[2]);
+                                wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[3]);
                                 wheelSpeed.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                tm.WheelSpeed = wheelSpeed;
-                                ModelChanged();*/
+                                ModelChanged();
                                 break;
                             case "steeringPosition":
                                 SteeringPosition steeringPosition = new SteeringPosition();
