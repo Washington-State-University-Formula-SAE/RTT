@@ -1,0 +1,17 @@
+﻿@page "/counter"
+@using RTTWeb.Data
+@inject TelemetryService telem
+<h1>Counter</h1>
+
+<p>Current count: @telem.tm.EngineRpm</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        this.StateHasChanged();
+    }
+}
