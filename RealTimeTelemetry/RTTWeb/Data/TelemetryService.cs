@@ -90,9 +90,6 @@ namespace RTTWeb.Data
                     System.Diagnostics.Debug.WriteLine("  {0}:", data);
                     System.Diagnostics.Debug.WriteLine("Application properties (set by device):");
 
-                    //if (eventData.Properties.)
-
-
                     foreach (var prop in eventData.Properties)
                     {
                         System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
@@ -104,7 +101,8 @@ namespace RTTWeb.Data
                         {
                             if (prop.Value.ToString() == "EngineRPM")
                             {
-                                tm.EngineRpm = Convert.ToInt32(data);
+                                tm.EngineRPM.RPM = Convert.ToInt32(data);
+                                //tm.EngineRPM.TimeStamp = ;
                                 ModelChanged();
                             }
                         }
