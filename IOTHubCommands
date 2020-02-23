@@ -1,0 +1,4 @@
+1. creates device is iothub named MyPythonDevice
+az iot hub device-identity create --hub-name hackathon2020fsae --device-id MyPythonDevice
+2. gets connection-string
+az iot hub device-identity show-connection-string --hub-name hackathon2020fsae --device-id MyPythonDevice --output table

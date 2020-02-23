@@ -26,7 +26,8 @@ namespace RTTWeb
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<Data.WeatherForecastService>();
+            services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<TelemetryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
