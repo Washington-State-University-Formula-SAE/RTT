@@ -58,7 +58,7 @@ namespace RTTWeb.Data
             {
                 tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
             }
-            tm.EngineRPM = new EngineRPM(); //Todo change this to null!
+            tm.EngineRPM = new VehicleRPM(); //Todo change this to null!
 
         }
 
@@ -90,24 +90,29 @@ namespace RTTWeb.Data
                         switch (eventData.SystemProperties["iothub-connection-device-id"])
                         {
                             case "EngineRPM":
-                                EngineRPM erpm = new EngineRPM();
+                                VehicleRPM erpm = new VehicleRPM();
                                 erpm.RPM = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
                                 erpm.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
                                 tm.EngineRPM = erpm;
                                 ModelChanged();
                                 break;
                             case "acceleratorPosition":
-
+                                AcceleratorPosition acceleratorPosition = new AcceleratorPosition();
                                 break;
                             case "vehicleRpm":
+                                VehicleRPM vehicleRPM = new VehicleRPM();
                                 break;
                             case "vehicleSpeed":
+                                VehicleSpeed vehicleSpeed = new VehicleSpeed();
                                 break;
                             case "vehicleGearActive":
+                                GearActive gearActive = new GearActive();
                                 break;
                             case "wheelSpeed":
+                                WheelSpeed wheelSpeed = new WheelSpeed();
                                 break;
                             case "steeringPosition":
+                                SteeringPosition steeringPosition = new SteeringPosition();
                                 break;
                         }
                     }
