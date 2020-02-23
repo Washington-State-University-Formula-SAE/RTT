@@ -30,7 +30,7 @@ namespace DataLayer
             return _context.EngineRPM.AsNoTracking().FirstOrDefault();
         }
 
-        public EngineRPM InsertRPM(EngineRPM engineRPM)
+        public EngineRPM InsertEngineRPM(EngineRPM engineRPM)
         {
             _context.EngineRPM.Add(engineRPM);
             _context.SaveChanges();
@@ -38,7 +38,7 @@ namespace DataLayer
             return engineRPM;
         }
 
-        public List<EngineRPM> InsertRPM(List<EngineRPM> engineRPMs)
+        public List<EngineRPM> InsertEngineRPM(List<EngineRPM> engineRPMs)
         {
             _context.EngineRPM.AddRange(engineRPMs);
             _context.SaveChanges();
