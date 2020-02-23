@@ -16,7 +16,7 @@ class CANInterface():
         while True:
             msg = can0.recv(30.0)
             if msg:
-                msg = str(msg.split())
+                msg = str(msg).split()
                 print (msg)     
                 self.__AddToSensor(msg)
             else:
