@@ -25,7 +25,7 @@ namespace DataSaveFunction
                 switch (message.SystemProperties["iothub-connection-device-id"])
                 {
                     case "EngineRPM":
-                        EngineRPM erpm = new EngineRPM();
+                        VehicleRPM erpm = new VehicleRPM();
                         erpm.RPM = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         string messageStr = message.SystemProperties["iothub-enqueuedtime"].ToString();
                         erpm.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];

@@ -11,15 +11,15 @@ namespace DataLayer
         {
             _context = new SQLData();
         }
-        public EngineRPM GetMostRecentEngineRPM()
+        public VehicleRPM GetMostRecentEngineRPM()
         {
             return _context.GetMostRecentEngineRPM();
         }
-        public IEnumerable<EngineRPM> GetAllEngineRPM()
+        public IEnumerable<VehicleRPM> GetAllEngineRPM()
         {
             return _context.GetAllEngineRPM();
         }
-        public IEnumerable<EngineRPM> GetEngineRPMBetweenTimes(DateTime start, DateTime end)
+        public IEnumerable<VehicleRPM> GetEngineRPMBetweenTimes(DateTime start, DateTime end)
         {
             return _context.GetEngineRPMBetweenTimes(start, end);
         }

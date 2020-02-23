@@ -7,7 +7,7 @@ namespace DataLayer
 {
     interface IDataWriteContext
     {
-        EngineRPM InsertRPM(EngineRPM engineRPMs);
-        List<EngineRPM> InsertRPM(List<EngineRPM> engineRPMs);
+        VehicleRPM InsertRPM(VehicleRPM engineRPMs);
+        List<VehicleRPM> InsertRPM(List<VehicleRPM> engineRPMs);
     }
 }

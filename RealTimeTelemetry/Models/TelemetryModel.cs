@@ -2,7 +2,7 @@
 {
     public class TelemetryModel
     {
-        public EngineRPM EngineRPM { get; set; }
+        public VehicleRPM EngineRPM { get; set; }
         public AcceleratorPosition AcceleratorPosition { get; set; }
         public BrakeActive BrakeActive { get; set; }
         public GearActive GearActive { get; set; }
