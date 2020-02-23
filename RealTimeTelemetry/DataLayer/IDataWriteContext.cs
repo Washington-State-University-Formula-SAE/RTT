@@ -34,5 +34,8 @@ namespace DataLayer
         // Steering Position
         SteeringPosition InsertSteeringPosition(SteeringPosition steeringPosition);
         List<SteeringPosition> InsertSteeringPosition(List<SteeringPosition> steeringPosition);
+
+        EngineTemperature InsertEngineTemperature(EngineTemperature engineTemperature);
+        List<EngineTemperature> InsertEngineTemperature(List<EngineTemperature> engineTemperature);
     }
 }

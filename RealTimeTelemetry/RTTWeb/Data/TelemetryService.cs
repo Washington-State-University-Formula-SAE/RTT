@@ -20,20 +20,18 @@ namespace RTTWeb.Data
 
         // Event Hub-compatible endpoint
         // az iot hub show --query properties.eventHubEndpoints.events.endpoint --name {your IoT Hub name}
-        private readonly static string s_eventHubsCompatibleEndpoint = "sb://ihsuprodbyres069dednamespace.servicebus.windows.net/";
+        private readonly static string s_eventHubsCompatibleEndpoint = "sb://iothub-ns-wsufsaehub-2976106-bc7996fee0.servicebus.windows.net/";
 
         // Event Hub-compatible name
         // az iot hub show --query properties.eventHubEndpoints.events.path --name {your IoT Hub name}
-        private readonly static string s_eventHubsCompatiblePath = "iothub-ehub-hackathon2-2973704-9523dece74";
+        private readonly static string s_eventHubsCompatiblePath = "wsufsaehub";
 
         // az iot hub policy show --name service --query primaryKey --hub-name {your IoT Hub name}
-        private readonly static string s_iotHubSasKey = "hzFFMn2gKpYbF7DO6gYJxHaOmkS2h+UK4ffIrkIsjJk=";
+        private readonly static string s_iotHubSasKey = "LmNaoKVB5LFyexY/5iYLg2HCiC3rBKNNcVngD06t0oI=";
         private readonly static string s_iotHubSasKeyName = "service";
         private static EventHubClient s_eventHubClient;
-        public TelemetryModel tm = new TelemetryModel();
-
-        public delegate void EventHandler();
-        public event EventHandler ModelChanged = delegate { };
+        public TelemetryModel telemetry = new TelemetryModel();
+        
         public TelemetryService()
         {
             var connectionString = new EventHubsConnectionStringBuilder(new Uri(s_eventHubsCompatibleEndpoint), s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey);
@@ -58,7 +56,7 @@ namespace RTTWeb.Data
             {
                 tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
             }
-            tm.VehicleRPM = new VehicleRPM(); //Todo change this to null!
+            telemetry.VehicleRPM = new VehicleRPM(); //Todo change this to null!
 
         }
 
@@ -93,29 +91,25 @@ namespace RTTWeb.Data
                                 VehicleRPM erpm = new VehicleRPM();
                                 erpm.RPM = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
                                 erpm.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                tm.VehicleRPM = erpm;
-                                ModelChanged();
+                                telemetry.VehicleRPM = erpm;
                                 break;
                             case "acceleratorPosition":
                                 AcceleratorPosition acceleratorPosition = new AcceleratorPosition();
                                 acceleratorPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array)); 
                                 acceleratorPosition.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                tm.AcceleratorPosition = acceleratorPosition;
-                                ModelChanged();
+                                telemetry.AcceleratorPosition = acceleratorPosition;
                                 break;
                             case "vehicleSpeed":
                                 VehicleSpeed vehicleSpeed = new VehicleSpeed();
                                 vehicleSpeed.Speed = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
                                 vehicleSpeed.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                tm.VehicleSpeed = vehicleSpeed;
-                                ModelChanged();
+                                telemetry.VehicleSpeed = vehicleSpeed;
                                 break;
                             case "vehicleGearActive":
                                 GearActive gearActive = new GearActive();
                                 gearActive.Gear = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
                                 gearActive.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                tm.GearActive = gearActive;
-                                ModelChanged();
+                                telemetry.GearActive = gearActive;
                                 break;
                             case "wheelSpeed":
                                 WheelSpeed wheelSpeed = new WheelSpeed();
@@ -125,14 +119,18 @@ namespace RTTWeb.Data
                                 wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[2]);
                                 wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[3]);
                                 wheelSpeed.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                ModelChanged();
                                 break;
                             case "steeringPosition":
                                 SteeringPosition steeringPosition = new SteeringPosition();
                                 steeringPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
                                 steeringPosition.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                tm.SteeringPosition = steeringPosition;
-                                ModelChanged();
+                                telemetry.SteeringPosition = steeringPosition;
+                                break;
+                            case "BrakeActive":
+                                BrakeActive brakeActive = new BrakeActive();
+                                brakeActive.Active = Convert.ToBoolean(Encoding.UTF8.GetString(eventData.Body.Array));
+                                brakeActive.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
+                                telemetry.BrakeActive = brakeActive;
                                 break;
                         }
                     }

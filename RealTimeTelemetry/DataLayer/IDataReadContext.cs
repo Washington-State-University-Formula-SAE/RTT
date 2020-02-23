@@ -40,5 +40,10 @@ namespace DataLayer
         SteeringPosition GetMostRecentSteeringPosition();
         IEnumerable<SteeringPosition> GetAllSteeringPosition();
         IEnumerable<SteeringPosition> GetSteeringPositionBetweenTimes(DateTime start, DateTime end);
+
+        // Engine Temperature
+        EngineTemperature GetMostRecentEngineTemperature();
+        IEnumerable<EngineTemperature> GetAllEngineTemperature();
+        IEnumerable<EngineTemperature> GetEngineTemperatureBetweenTimes(DateTime start, DateTime end);
     }
 }

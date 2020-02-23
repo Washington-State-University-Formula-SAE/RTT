@@ -14,6 +14,7 @@ namespace DataLayer
         public DbSet<GearActive> GearActive { get; set; }
         public DbSet<WheelSpeed> WheelSpeed { get; set; }
         public DbSet<SteeringPosition> SteeringPosition { get; set; }
+        public DbSet<EngineTemperature> EngineTemperature { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +38,8 @@ namespace DataLayer
             modelBuilder.Entity<WheelSpeed>()
                 .HasKey(b => b.TimeStamp);
             modelBuilder.Entity<SteeringPosition>()
+                .HasKey(b => b.TimeStamp);
+            modelBuilder.Entity<EngineTemperature>()
                 .HasKey(b => b.TimeStamp);
         }
     }

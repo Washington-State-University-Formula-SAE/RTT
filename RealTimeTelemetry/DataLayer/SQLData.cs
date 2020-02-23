@@ -17,17 +17,17 @@ namespace DataLayer
 
         public IEnumerable<AcceleratorPosition> GetAcceleratorPositionBetweenTimes(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return _context.AcceleratorPosition.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
         public IEnumerable<AcceleratorPosition> GetAllAcceleratorPosition()
         {
-            throw new NotImplementedException();
+            return _context.AcceleratorPosition.AsNoTracking();
         }
 
         public IEnumerable<BrakeActive> GetAllBrakeActive()
         {
-            throw new NotImplementedException();
+            return _context.BrakeActive.AsNoTracking();
         }
 
         public IEnumerable<VehicleRPM> GetAllVehicleRPM()
@@ -37,27 +37,27 @@ namespace DataLayer
 
         public IEnumerable<GearActive> GetAllGearActive()
         {
-            throw new NotImplementedException();
+            return _context.GearActive.AsNoTracking();
         }
 
         public IEnumerable<SteeringPosition> GetAllSteeringPosition()
         {
-            throw new NotImplementedException();
+            return _context.SteeringPosition.AsNoTracking();
         }
 
         public IEnumerable<VehicleSpeed> GetAllVehicleSpeed()
         {
-            throw new NotImplementedException();
+            return _context.VehicleSpeed.AsNoTracking();
         }
 
         public IEnumerable<WheelSpeed> GetAllWheelSpeed()
         {
-            throw new NotImplementedException();
+            return _context.WheelSpeed.AsNoTracking();
         }
 
         public IEnumerable<BrakeActive> GetBrakeActiveBetweenTimes(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return _context.BrakeActive.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
         public IEnumerable<VehicleRPM> GetVehicleRPMBetweenTimes(DateTime start, DateTime end)
@@ -67,17 +67,17 @@ namespace DataLayer
 
         public IEnumerable<GearActive> GetGearActiveBetweenTimes(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return _context.GearActive.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
         public AcceleratorPosition GetMostRecentAccelatorPosition()
         {
-            throw new NotImplementedException();
+            return _context.AcceleratorPosition.AsNoTracking().FirstOrDefault();
         }
 
         public BrakeActive GetMostRecentBrakeActive()
         {
-            throw new NotImplementedException();
+            return _context.BrakeActive.AsNoTracking().FirstOrDefault();
         }
 
         public VehicleRPM GetMostRecentVehicleRPM()
@@ -87,60 +87,69 @@ namespace DataLayer
 
         public GearActive GetMostRecentGearActive()
         {
-            throw new NotImplementedException();
+            return _context.GearActive.AsNoTracking().FirstOrDefault();
         }
 
         public SteeringPosition GetMostRecentSteeringPosition()
         {
-            throw new NotImplementedException();
+            return _context.SteeringPosition.AsNoTracking().FirstOrDefault();
         }
 
         public VehicleSpeed GetMostRecentVehicleSpeed()
         {
-            throw new NotImplementedException();
+            return _context.VehicleSpeed.AsNoTracking().FirstOrDefault();
         }
 
         public WheelSpeed GetMostRecentWheelSpeed()
         {
-            throw new NotImplementedException();
+            return _context.WheelSpeed.AsNoTracking().FirstOrDefault();
         }
 
         public IEnumerable<SteeringPosition> GetSteeringPositionBetweenTimes(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return _context.SteeringPosition.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
         public IEnumerable<VehicleSpeed> GetVehicleSpeedBetweenTimes(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return _context.VehicleSpeed.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
         public IEnumerable<WheelSpeed> GetWheelSpeedBetweenTimes(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return _context.WheelSpeed.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
         public AcceleratorPosition InsertAcceleratorPosition(AcceleratorPosition acceleratorPosition)
         {
             _context.AcceleratorPosition.Add(acceleratorPosition);
+            _context.SaveChanges();
+            _context.Entry(acceleratorPosition).State = EntityState.Detached;
             return acceleratorPosition;
         }
 
         public List<AcceleratorPosition> InsertAcceleratorPosition(List<AcceleratorPosition> acceleratorPosition)
         {
             _context.AcceleratorPosition.AddRange(acceleratorPosition);
+            _context.SaveChanges();
+            _context.Entry(acceleratorPosition).State = EntityState.Detached;
             return acceleratorPosition;
         }
 
         public BrakeActive InsertBrakeActive(BrakeActive brakeActive)
         {
             _context.BrakeActive.Add(brakeActive);
+            _context.SaveChanges();
+            _context.Entry(brakeActive).State = EntityState.Detached;
             return brakeActive;
         }
 
         public List<BrakeActive> InsertBrakeActive(List<BrakeActive> brakeActive)
         {
-            throw new NotImplementedException();
+            _context.BrakeActive.AddRange(brakeActive);
+            _context.SaveChanges();
+            _context.Entry(brakeActive).State = EntityState.Detached;
+            return brakeActive;
         }
 
         public VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPM)
@@ -162,45 +171,98 @@ namespace DataLayer
         public GearActive InsertGearActive(GearActive gearActive)
         {
             _context.GearActive.Add(gearActive);
+            _context.SaveChanges();
+            _context.Entry(gearActive).State = EntityState.Detached;
             return gearActive;
         }
 
         public List<GearActive> InsertGearActive(List<GearActive> gearActive)
         {
-            throw new NotImplementedException();
+            _context.GearActive.AddRange(gearActive);
+            _context.SaveChanges();
+            _context.Entry(gearActive).State = EntityState.Detached;
+            return gearActive;
         }
 
         public SteeringPosition InsertSteeringPosition(SteeringPosition steeringPosition)
         {
             _context.SteeringPosition.Add(steeringPosition);
+            _context.SaveChanges();
+            _context.Entry(steeringPosition).State = EntityState.Detached;
             return steeringPosition;
         }
 
         public List<SteeringPosition> InsertSteeringPosition(List<SteeringPosition> steeringPosition)
         {
-            throw new NotImplementedException();
+            _context.SteeringPosition.AddRange(steeringPosition);
+            _context.SaveChanges();
+            _context.Entry(steeringPosition).State = EntityState.Detached;
+            return steeringPosition;
         }
 
         public VehicleSpeed InsertVehicleSpeed(VehicleSpeed vehicleSpeed)
         {
             _context.VehicleSpeed.Add(vehicleSpeed);
+            _context.SaveChanges();
+            _context.Entry(vehicleSpeed).State = EntityState.Detached;
             return vehicleSpeed;
         }
 
         public List<VehicleSpeed> InsertVehicleSpeed(List<VehicleSpeed> vehicleSpeed)
         {
-            throw new NotImplementedException();
+            _context.VehicleSpeed.AddRange(vehicleSpeed);
+            _context.SaveChanges();
+            _context.Entry(vehicleSpeed).State = EntityState.Detached;
+            return vehicleSpeed;
         }
 
         public WheelSpeed InsertWheelSpeed(WheelSpeed wheelSpeed)
         {
             _context.WheelSpeed.Add(wheelSpeed);
+            _context.Entry(wheelSpeed).State = EntityState.Detached;
+            _context.SaveChanges();
             return wheelSpeed;
         }
 
         public List<WheelSpeed> InsertWheelSpeed(List<WheelSpeed> wheelSpeed)
         {
-            throw new NotImplementedException();
+            _context.WheelSpeed.AddRange(wheelSpeed);
+            _context.Entry(wheelSpeed).State = EntityState.Detached;
+            _context.SaveChanges();
+            return wheelSpeed;
+        }
+
+        public EngineTemperature GetMostRecentEngineTemperature()
+        {
+            return _context.EngineTemperature.AsNoTracking().FirstOrDefault();
+
+        }
+
+        public IEnumerable<EngineTemperature> GetAllEngineTemperature()
+        {
+            return _context.EngineTemperature.AsNoTracking();
+
+        }
+
+        public IEnumerable<EngineTemperature> GetEngineTemperatureBetweenTimes(DateTime start, DateTime end)
+        {
+            return _context.EngineTemperature.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
+        }
+
+        public EngineTemperature InsertEngineTemperature(EngineTemperature engineTemperature)
+        {
+            _context.EngineTemperature.Add(engineTemperature);
+            _context.SaveChanges();
+            _context.Entry(engineTemperature).State = EntityState.Detached;
+            return engineTemperature;
+        }
+
+        public List<EngineTemperature> InsertEngineTemperature(List<EngineTemperature> engineTemperature)
+        {
+            _context.EngineTemperature.AddRange(engineTemperature);
+            _context.SaveChanges();
+            _context.Entry(engineTemperature).State = EntityState.Detached;
+            return engineTemperature;
         }
     }
 }
