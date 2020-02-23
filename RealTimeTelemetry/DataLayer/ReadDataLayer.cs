@@ -13,17 +13,17 @@ namespace DataLayer
         }
 
         // Engine RPM
-        public EngineRPM GetMostRecentEngineRPM()
+        public VehicleRPM GetMostRecentVehicleRPM()
         {
-            return _context.GetMostRecentEngineRPM();
+            return _context.GetMostRecentVehicleRPM();
         }
-        public IEnumerable<EngineRPM> GetAllEngineRPM()
+        public IEnumerable<VehicleRPM> GetAllVehicleRPM()
         {
-            return _context.GetAllEngineRPM();
+            return _context.GetAllVehicleRPM();
         }
-        public IEnumerable<EngineRPM> GetEngineRPMBetweenTimes(DateTime start, DateTime end)
+        public IEnumerable<VehicleRPM> GetVehicleRPMBetweenTimes(DateTime start, DateTime end)
         {
-            return _context.GetEngineRPMBetweenTimes(start, end);
+            return _context.GetVehicleRPMBetweenTimes(start, end);
         }
 
         // Vehicle Speed
@@ -43,7 +43,7 @@ namespace DataLayer
         // Accelerator Position
         public AcceleratorPosition GetMostRecentAccelertorPosition()
         {
-            return _context.GetMostRecentAccelertorPosition();
+            return _context.GetMostRecentAccelatorPosition();
         }
         public IEnumerable<AcceleratorPosition> GetAllAcceleratorPosition()
         {

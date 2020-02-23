@@ -7,9 +7,9 @@ namespace DataLayer
     public interface IDataReadContext
     {
         // Engine RPM
-        EngineRPM GetMostRecentVehicleRPM();
-        IEnumerable<EngineRPM> GetAllVehicleRPM();
-        IEnumerable<EngineRPM> GetVehicleRPMBetweenTimes(DateTime start, DateTime end);
+        VehicleRPM GetMostRecentVehicleRPM();
+        IEnumerable<VehicleRPM> GetAllVehicleRPM();
+        IEnumerable<VehicleRPM> GetVehicleRPMBetweenTimes(DateTime start, DateTime end);
 
         // Vehicle Speed
         VehicleSpeed GetMostRecentVehicleSpeed();

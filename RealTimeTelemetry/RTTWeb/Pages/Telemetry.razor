@@ -112,7 +112,7 @@
         {
             _tempDataSet.RemoveAt(0);
         }
-        _tempDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.tm.EngineRPM.RPM)); 
+        _tempDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.tm.VehicleRPM.RPM)); 
 
         // Update the UI
         this.StateHasChanged();
@@ -125,7 +125,7 @@
         {
             _tempDataSet.RemoveAt(0);
         }
-        _tempDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.tm.EngineRPM.RPM));
+        _tempDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.tm.VehicleRPM.RPM));
 
         // Update the UI
         this.StateHasChanged();

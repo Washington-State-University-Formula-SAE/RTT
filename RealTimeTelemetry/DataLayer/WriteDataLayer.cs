@@ -14,13 +14,13 @@ namespace DataLayer
         }
 
         // Engine RPM
-        public EngineRPM InsertVehicleRPM(EngineRPM engineRPMs)
+        public VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPMs)
         {
-            return _context.InsertVehicleRPM(engineRPMs);
+            return _context.InsertVehicleRPM(VehicleRPMs);
         }
-        public List<EngineRPM> InsertVehicleRPM(List<EngineRPM> engineRPMs)
+        public List<VehicleRPM> InsertVehicleRPM(List<VehicleRPM> VehicleRPMs)
         {
-            return _context.InsertVehicleRPM(engineRPMs);
+            return _context.InsertVehicleRPM(VehicleRPMs);
         }
 
         // Vehicle Speed
@@ -30,7 +30,7 @@ namespace DataLayer
         }
         public List<VehicleSpeed> InsertVehicleSpeed(List<VehicleSpeed> vehicleSpeed)
         {
-            return _context.InsertVehicleSpeed(List<VehicleSpeed> vehicleSpeed);
+            return _context.InsertVehicleSpeed(vehicleSpeed);
         }
 
         // Accelerator Position

@@ -7,7 +7,7 @@ namespace DataLayer
 {
     public class TelematryContext : DbContext
     {
-        public DbSet<EngineRPM> EngineRPM { get; set; }
+        public DbSet<VehicleRPM> VehicleRPM { get; set; }
         public DbSet<VehicleSpeed> VehicleSpeed { get; set; }
         public DbSet<AcceleratorPosition> AcceleratorPosition { get; set; }
         public DbSet<BrakeActive> BrakeActive { get; set; }
@@ -24,7 +24,7 @@ namespace DataLayer
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EngineRPM>()
+            modelBuilder.Entity<VehicleRPM>()
                 .HasKey(b => b.TimeStamp);
             modelBuilder.Entity<VehicleSpeed>()
                 .HasKey(b => b.TimeStamp);
