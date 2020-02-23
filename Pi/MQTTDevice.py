@@ -15,8 +15,8 @@ def on_log(client, userdata, level, buf):
     print("log: ",buf)
 
 class MQTTDevice:
-    sas_token = "SharedAccessSignature sr=hackathon2020fsae.azure-devices.net&sig=u7v565eWC1MMstYzDcl5kCXepcluJh8zcFko7SKTieg%3D&skn=iothubowner&se=1582764444"
-    iot_hub_name = "hackathon2020fsae"
+    sas_token = "SharedAccessSignature sr=wsufsaehub.azure-devices.net&sig=rcDUNicYw%2BEw0RLAx4JzvttIc6XcAwHBBpbDCDGB1ww%3D&skn=iothubowner&se=1582807936"
+    iot_hub_name = "wsufsaehub"
     def __init__(self, device_id):
         self.device_id = device_id
 

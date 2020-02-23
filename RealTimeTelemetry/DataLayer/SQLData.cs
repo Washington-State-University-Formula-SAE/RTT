@@ -15,22 +15,22 @@ namespace DataLayer
             _context = new TelematryContext();
         }
 
-        public IEnumerable<EngineRPM> GetAllEngineRPM()
+        public IEnumerable<VehicleRPM> GetAllEngineRPM()
         {
             return _context.EngineRPM.AsNoTracking();
         }
 
-        public IEnumerable<EngineRPM> GetEngineRPMBetweenTimes(DateTime start, DateTime end)
+        public IEnumerable<VehicleRPM> GetEngineRPMBetweenTimes(DateTime start, DateTime end)
         {
             return _context.EngineRPM.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
-        public EngineRPM GetMostRecentEngineRPM()
+        public VehicleRPM GetMostRecentEngineRPM()
         {
             return _context.EngineRPM.AsNoTracking().FirstOrDefault();
         }
 
-        public EngineRPM InsertRPM(EngineRPM engineRPM)
+        public VehicleRPM InsertRPM(VehicleRPM engineRPM)
         {
             _context.EngineRPM.Add(engineRPM);
             _context.SaveChanges();
@@ -38,7 +38,7 @@ namespace DataLayer
             return engineRPM;
         }
 
-        public List<EngineRPM> InsertRPM(List<EngineRPM> engineRPMs)
+        public List<VehicleRPM> InsertRPM(List<VehicleRPM> engineRPMs)
         {
             _context.EngineRPM.AddRange(engineRPMs);
             _context.SaveChanges();

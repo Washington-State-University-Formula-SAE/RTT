@@ -12,11 +12,11 @@ namespace DataLayer
         {
             _context = new SQLData();
         }
-        public EngineRPM InsertRPM(EngineRPM engineRPMs)
+        public VehicleRPM InsertRPM(VehicleRPM engineRPMs)
         {
             return _context.InsertRPM(engineRPMs);
         }
-        public List<EngineRPM> InsertRPM(List<EngineRPM> engineRPMs)
+        public List<VehicleRPM> InsertRPM(List<VehicleRPM> engineRPMs)
         {
             return _context.InsertRPM(engineRPMs);
         }

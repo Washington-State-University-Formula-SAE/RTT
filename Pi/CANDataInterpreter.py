@@ -1,10 +1,13 @@
 import os
 import can
-from EngineRPM import EngineRPM
+from vehicleMQTT import *
 
 class CANInterface():
     def __init__(self):
-        self.EngineRPM = EngineRPM()
+        self.vehicleRPM = vehicleRPM()
+        self.vehicleSpeed = vehicleSpeed()
+        self.acceleratorPosition = acceleratorPosition()        
+        self.brakeActive = brakeActive()
 
     def start_receive(self):
         # CAN
@@ -23,8 +26,15 @@ class CANInterface():
                 print('No message was received')
 
     def __AddToSensor(self, message):
-        if message[3] == "0631":
-            hexMessage = ''.join(message[7:14])
-            intMessage = int(hexMessage,16)
-            self.EngineRPM.SendData(intMessage)
+            if message[3] is '201': # accelerator position, rpm, speed
+                speedMessage = (((int(message[7], 16)*256)+int(message[8], 16)) / 100) - 100 # km/h
+                rpmMessage = ((int(message[3], 16)+int(message[4], 16)))
+                acceleratorMessage = (int(message[9], 16))
+                self.vehicleSpeed.SendData(speedMessage)
+                self.vehicleRPM.SendData(rpmMessage)
+                self.acceleratorPosition.SendData(acceleratorMessage)
+            elif message[3] is '205':
+                brakeApplied = (int(message[9], 16))
+                self.brakeActive.SendData(brakeApplied)
+
 

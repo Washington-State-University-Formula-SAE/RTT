@@ -58,7 +58,7 @@ namespace RTTWeb.Data
             {
                 tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
             }
-            tm.EngineRPM = new EngineRPM(); //Todo change this to null!
+            tm.VehicleRPM = new VehicleRPM(); //Todo change this to null!
 
         }
 
@@ -89,25 +89,47 @@ namespace RTTWeb.Data
                     {
                         switch (eventData.SystemProperties["iothub-connection-device-id"])
                         {
-                            case "EngineRPM":
-                                EngineRPM erpm = new EngineRPM();
+                            case "vehicleRPM":
+                                VehicleRPM erpm = new VehicleRPM();
                                 erpm.RPM = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
                                 erpm.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
-                                tm.EngineRPM = erpm;
+                                tm.VehicleRPM = erpm;
                                 ModelChanged();
                                 break;
                             case "acceleratorPosition":
-
-                                break;
-                            case "vehicleRpm":
+                                AcceleratorPosition acceleratorPosition = new AcceleratorPosition();
+                                acceleratorPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array)); 
+                                acceleratorPosition.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
+                                tm.AcceleratorPosition = acceleratorPosition;
+                                ModelChanged();
                                 break;
                             case "vehicleSpeed":
+                                VehicleSpeed vehicleSpeed = new VehicleSpeed();
+                                vehicleSpeed.Speed = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
+                                vehicleSpeed.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
+                                tm.VehicleSpeed = vehicleSpeed;
+                                ModelChanged();
                                 break;
                             case "vehicleGearActive":
+                                GearActive gearActive = new GearActive();
+                                gearActive.Gear = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
+                                gearActive.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
+                                tm.GearActive = gearActive;
+                                ModelChanged();
                                 break;
                             case "wheelSpeed":
+                                WheelSpeed wheelSpeed = new WheelSpeed();
+                                /*wheelSpeed.FrontDriver = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
+                                wheelSpeed.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
+                                tm.WheelSpeed = wheelSpeed;
+                                ModelChanged();*/
                                 break;
                             case "steeringPosition":
+                                SteeringPosition steeringPosition = new SteeringPosition();
+                                steeringPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
+                                steeringPosition.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
+                                tm.SteeringPosition = steeringPosition;
+                                ModelChanged();
                                 break;
                         }
                     }
