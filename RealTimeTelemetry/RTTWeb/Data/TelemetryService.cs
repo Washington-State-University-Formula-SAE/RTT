@@ -36,32 +36,37 @@ namespace RTTWeb.Data
         public event EventHandler ModelChanged = delegate { };
         public TelemetryService()
         {
-            var connectionString = new EventHubsConnectionStringBuilder(new Uri(s_eventHubsCompatibleEndpoint), s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey);
-            s_eventHubClient = EventHubClient.CreateFromConnectionString(connectionString.ToString());
-
-            // Create a PartitionReciever for each partition on the hub.
-            var runtimeInfo = s_eventHubClient.GetRuntimeInformationAsync().Result;
-            var d2cPartitions = runtimeInfo.PartitionIds;
-
-            CancellationTokenSource cts = new CancellationTokenSource();
-
-            Console.CancelKeyPress += (s, e) =>
+            try
             {
-                e.Cancel = true;
-                cts.Cancel();
-                System.Diagnostics.Debug.WriteLine("Exiting...");
-            };
+                var connectionString = new EventHubsConnectionStringBuilder(new Uri(s_eventHubsCompatibleEndpoint), s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey);
+                s_eventHubClient = EventHubClient.CreateFromConnectionString(connectionString.ToString());
+
+                // Create a PartitionReciever for each partition on the hub.
+                var runtimeInfo = s_eventHubClient.GetRuntimeInformationAsync().Result;
+                var d2cPartitions = runtimeInfo.PartitionIds;
+
+                CancellationTokenSource cts = new CancellationTokenSource();
+
+                Console.CancelKeyPress += (s, e) =>
+                {
+                    e.Cancel = true;
+                    cts.Cancel();
+                    System.Diagnostics.Debug.WriteLine("Exiting...");
+                };
 
 
-            var tasks = new List<Task>();
-            foreach (string partition in d2cPartitions)
-            {
-                tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
+                var tasks = new List<Task>();
+                foreach (string partition in d2cPartitions)
+                {
+                    tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
+                }
+                tm.VehicleRPM = new VehicleRPM(); //Todo change this to null!
             }
-            tm.VehicleRPM = new VehicleRPM(); //Todo change this to null!
-
+            catch(AggregateException)
+            {
+                return;
+            }
         }
-
 
         // Asynchronously create a PartitionReceiver for a partition and then start 
         // reading any messages sent from the simulated client.
