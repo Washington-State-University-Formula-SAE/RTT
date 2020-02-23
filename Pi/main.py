@@ -6,4 +6,5 @@ from CANDataInterpreter import CANInterface
 
 if __name__ == "__main__":
     can = CANInterface()
+    can.start_receive()
     

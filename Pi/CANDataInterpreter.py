@@ -6,7 +6,7 @@ class CANInterface():
     def __init__(self):
         self.EngineRPM = EngineRPM()
 
-    def __start_receive(self):
+    def start_receive(self):
         # CAN
         os.system('sudo ip link set can0 type can bitrate 500000')
         os.system('sudo ifconfig can0 up')
