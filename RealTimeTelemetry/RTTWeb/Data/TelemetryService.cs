@@ -96,6 +96,19 @@ namespace RTTWeb.Data
                                 tm.EngineRPM = erpm;
                                 ModelChanged();
                                 break;
+                            case "acceleratorPosition":
+
+                                break;
+                            case "vehicleRpm":
+                                break;
+                            case "vehicleSpeed":
+                                break;
+                            case "vehicleGearActive":
+                                break;
+                            case "wheelSpeed":
+                                break;
+                            case "steeringPosition":
+                                break;
                         }
                     }
                 }
