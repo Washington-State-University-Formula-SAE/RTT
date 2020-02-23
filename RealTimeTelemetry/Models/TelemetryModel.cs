@@ -2,7 +2,8 @@
 {
     public class TelemetryModel
     {
-        public double EngineRpm { get; set; }
-        public string EngineRpmStr { get; set; }
+        public EngineRPM EngineRPM { get; set; }
+        public AcceleratorPosition AcceleratorPosition { get; set; }
+        public {get;set;}
     }
 }
