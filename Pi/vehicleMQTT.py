@@ -35,10 +35,16 @@ class brakeActive(MQTTDevice):
 class wheelSpeed(MQTTDevice):
     def __init__(self):
         super(wheelSpeed, self).__init__("wheelSpeed")
-        self.speed = None
-    def SendData(self, data):
-        self.speed = data
-        self._SendMessage(str(self.speed))
+        self.data1 = None
+        self.data2 = None
+        self.data3 = None
+        self.data4 = None
+    def SendData(self, data1, data2, data3, data4):
+        self.data1 = data1
+        self.data2 = data2
+        self.data3 = data3
+        self.data4 = data4
+        self._SendMessage(str(self.data1+','+self.data2+','+data3+','+data4))
 
 class steeringPosition(MQTTDevice):
     def __init__(self):
