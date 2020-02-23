@@ -26,14 +26,17 @@ class CANInterface():
                 print('No message was received')
 
     def __AddToSensor(self, message):
-            if message[3] is '201': # accelerator position, rpm, speed
-                speedMessage = (((int(message[7], 16)*256)+int(message[8], 16)) / 100) - 100 # km/h
-                rpmMessage = ((int(message[3], 16)+int(message[4], 16)))
-                acceleratorMessage = (int(message[9], 16))
+            if message[3] == '0631': # accelerator position, rpm, speed
+                # speedMessage = (((int(message[7], 16)*256)+int(message[8], 16)) / 100) - 100 # km/h
+                # rpmMessage = ((int(message[3], 16)+int(message[4], 16)))
+                # acceleratorMessage = (int(message[9], 16))
+                speedMessage = 45
+                rpmMessage = 3432
+                acceleratorMessage = 50 # max is 200
                 self.vehicleSpeed.SendData(speedMessage)
                 self.vehicleRPM.SendData(rpmMessage)
                 self.acceleratorPosition.SendData(acceleratorMessage)
-            elif message[3] is '205':
+            elif message[3] == '205':
                 brakeApplied = (int(message[9], 16))
                 self.brakeActive.SendData(brakeApplied)
 
