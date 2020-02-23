@@ -31,7 +31,7 @@ namespace RTTWeb.Data
         private readonly static string s_iotHubSasKeyName = "service";
         private static EventHubClient s_eventHubClient;
         public TelemetryModel telemetry = new TelemetryModel();
-        
+
         public TelemetryService()
         {
             try
@@ -58,9 +58,8 @@ namespace RTTWeb.Data
                 {
                     tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
                 }
-                tm.VehicleRPM = new VehicleRPM(); //Todo change this to null!
             }
-            catch(AggregateException)
+            catch (AggregateException)
             {
                 return;
             }
@@ -100,7 +99,7 @@ namespace RTTWeb.Data
                                 break;
                             case "acceleratorPosition":
                                 AcceleratorPosition acceleratorPosition = new AcceleratorPosition();
-                                acceleratorPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array)); 
+                                acceleratorPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(eventData.Body.Array));
                                 acceleratorPosition.TimeStamp = (DateTime)eventData.SystemProperties["iothub-enqueuedtime"];
                                 telemetry.AcceleratorPosition = acceleratorPosition;
                                 break;
