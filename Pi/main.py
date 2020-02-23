@@ -2,10 +2,8 @@ from paho.mqtt import client as mqtt
 import time
 import ssl
 import MQTTDevice
+from CANDataInterpreter import CANInterface
 
-device_id = "EngineRPM"
-device = MQTTDevice.MQTTDevice(device_id )
-for i in range(100):
-    time.sleep(2)
-    device.SendMessage("helloWorld")
+if __name__ == "__main__":
+    can = CANInterface()
     

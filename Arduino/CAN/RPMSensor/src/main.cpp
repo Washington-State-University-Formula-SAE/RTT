@@ -14,7 +14,7 @@ Distributed as-is; no warranty is given.
 #include <mcp2515_defs.h>
 
 //********************************Setup Loop*********************************//
-
+int count = 0;
 void setup() {
   Serial.begin(9600);
   Serial.println("CAN Write - Testing transmission of CAN Bus messages");
@@ -32,19 +32,21 @@ void setup() {
 
 void loop() 
 {
+  count+=1;
   tCAN message;
-
+  int rpm = count;
   message.id = 0x631; //formatted in HEX
   message.header.rtr = 0;
   message.header.length = 8; //formatted in DEC
-  message.data[0] = 0x40;
-	message.data[1] = 0x05;
-	message.data[2] = 0x30;
-	message.data[3] = 0xFF; //formatted in HEX
+  memset(message.data, 0,8);
+  message.data[0] = 0x00;
+	message.data[1] = 0x00;
+	message.data[2] = 0x00;
+	message.data[3] = 0x00; //formatted in HEX
 	message.data[4] = 0x00;
-	message.data[5] = 0x40;
-	message.data[6] = 0x00;
-	message.data[7] = 0x00;
+	message.data[5] = 0x00;
+	message.data[6] = rpm/256;
+	message.data[7] = rpm%256;
 
   mcp2515_bit_modify(CANCTRL, (1<<REQOP2)|(1<<REQOP1)|(1<<REQOP0), 0);
   mcp2515_send_message(&message);

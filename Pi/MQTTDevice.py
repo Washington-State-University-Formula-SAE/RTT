@@ -41,7 +41,7 @@ class MQTTDevice:
         self.client.subscribe("$iothub/twin/PATCH/properties/desired/#")
         self.client.subscribe("$iothub/methods/POST/#")
 
-    def SendMessage(self, payload):
+    def _SendMessage(self, payload):
         self.client.publish("devices/{device_id}/messages/events/".format(device_id=self.device_id), payload=payload, qos=0, retain=False)
-    def LoopForever(self):
+    def _LoopForever(self):
         self.client.loop_forever()
