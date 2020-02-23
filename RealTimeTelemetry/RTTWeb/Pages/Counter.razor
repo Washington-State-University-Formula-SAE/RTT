@@ -3,7 +3,7 @@
 @inject TelemetryService telem
 <h1>Counter</h1>
 
-<p>Current count: @currentCount</p>
+<p>Current count: @telem.tm.EngineRpm</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
@@ -12,6 +12,6 @@
 
     private void IncrementCount()
     {
-        currentCount++;
+        this.StateHasChanged();
     }
 }

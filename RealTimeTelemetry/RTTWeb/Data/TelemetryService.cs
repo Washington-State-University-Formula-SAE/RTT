@@ -30,7 +30,7 @@ namespace RTTWeb.Data
         private readonly static string s_iotHubSasKey = "hzFFMn2gKpYbF7DO6gYJxHaOmkS2h+UK4ffIrkIsjJk=";
         private readonly static string s_iotHubSasKeyName = "service";
         private static EventHubClient s_eventHubClient;
-        TelemetryModel tm = new TelemetryModel();
+        public TelemetryModel tm = new TelemetryModel();
         public TelemetryService()
         {
             var connectionString = new EventHubsConnectionStringBuilder(new Uri(s_eventHubsCompatibleEndpoint), s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey);
@@ -61,7 +61,7 @@ namespace RTTWeb.Data
 
         // Asynchronously create a PartitionReceiver for a partition and then start 
         // reading any messages sent from the simulated client.
-        private static async Task ReceiveMessagesFromDeviceAsync(string partition, CancellationToken ct)
+        private async Task ReceiveMessagesFromDeviceAsync(string partition, CancellationToken ct)
         {
             // Create the receiver using the default consumer group.
             // For the purposes of this sample, read only messages sent since 
@@ -86,6 +86,10 @@ namespace RTTWeb.Data
                     System.Diagnostics.Debug.WriteLine("Message received on partition {0}:", partition);
                     System.Diagnostics.Debug.WriteLine("  {0}:", data);
                     System.Diagnostics.Debug.WriteLine("Application properties (set by device):");
+
+                    //if (eventData.Properties.)
+
+
                     foreach (var prop in eventData.Properties)
                     {
                         System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
@@ -93,6 +97,12 @@ namespace RTTWeb.Data
                     System.Diagnostics.Debug.WriteLine("System properties (set by IoT Hub):");
                     foreach (var prop in eventData.SystemProperties)
                     {
+                        if (prop.Key == "iothub-connection-device-id")
+                        {
+                            if (prop.Value.ToString() == "EngineRPM")
+                                tm.EngineRpm = Convert.ToInt32(data);
+                        }
+
                         System.Diagnostics.Debug.WriteLine("  {0}: {1}", prop.Key, prop.Value);
                     }
                 }
