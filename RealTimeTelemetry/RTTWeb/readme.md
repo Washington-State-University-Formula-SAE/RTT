@@ -1,11 +1,14 @@
 # Real time Telemetry Web Site
-**Blazor server based website that reads telemetry from a car**
+**Blazor server based website that reads telemetry from an IOT Hub**
   
 # Setup IOT Hub
 1. Create IOT Hub on Azure
 1. Add Devices
     1. use `az iot hub device-identity create --hub-name {Hub Name ie wsufsaeHub} --device-id {device name ie acceleratorPosition}`
     1. Can get connection string from created device `az iot hub device-identity show-connection-string --hub-name {Hub Name ie wsufsaeHub} --device-id {device name ie acceleratorPosition} --output table`
+1. Generating SAS key
+    1. Just use VSCode as its easiest (add extension, find hub and in bottom right leaf folder click on 3 dots and click generate)
+
 
 
 # Setup Website
