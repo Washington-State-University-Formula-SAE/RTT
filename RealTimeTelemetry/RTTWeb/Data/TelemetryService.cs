@@ -15,16 +15,6 @@ namespace RTTWeb.Data
 {
     public class TelemetryService
     {
-        // https://stackoverflow.com/questions/45889855/simple-way-to-get-data-from-iot-hub-in-c-sharp
-        // https://docs.microsoft.com/en-us/azure/iot-hub/quickstart-send-telemetry-dotnet
-
-        // Event Hub-compatible endpoint
-        // az iot hub show --query properties.eventHubEndpoints.events.endpoint --name {your IoT Hub name}
-
-        // Event Hub-compatible name
-        // az iot hub show --query properties.eventHubEndpoints.events.path --name {your IoT Hub name}
-
-        // az iot hub policy show --name service --query primaryKey --hub-name {your IoT Hub name}
         private static EventHubClient s_eventHubClient;
         public TelemetryModel telemetry = new TelemetryModel();
 
