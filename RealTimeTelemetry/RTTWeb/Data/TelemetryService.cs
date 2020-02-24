@@ -32,7 +32,7 @@ namespace RTTWeb.Data
         private static EventHubClient s_eventHubClient;
         public TelemetryModel telemetry = new TelemetryModel();
 
-        public TelemetryService()
+        public TelemetryService(string s_eventHubsCompatibleEndpoint, string s_iotHubSasKeyName, string s_iotHubSasKey)
         {
             try
             {
