@@ -79,12 +79,19 @@ namespace DataSaveFunction
                 }
                 //log.LogInformation($"C# IoT Hub trigger function processed a message: {Encoding.UTF8.GetString(message.Body.Array)}");
             }
-            await _context.InsertVehicleRPMAsync(vehicleRPMs);
-            await _context.InsertAcceleratorPositionAsync(acceleratorPositions);
-            await _context.InsertVehicleSpeedAsync(vehicleSpeeds);
-            await _context.InsertGearActiveAsync(gearActives);
-            await _context.InsertWheelSpeedAsync(wheelSpeeds);
-            await _context.InsertSteeringPositionAsync(steeringPositions);
+            var task1 = _context.InsertVehicleRPMAsync(vehicleRPMs);
+            var task2 = _context.InsertAcceleratorPositionAsync(acceleratorPositions);
+            var task3 = _context.InsertVehicleSpeedAsync(vehicleSpeeds);
+            var task4 = _context.InsertGearActiveAsync(gearActives);
+            var task5 = _context.InsertWheelSpeedAsync(wheelSpeeds);
+            var task6 = _context.InsertSteeringPositionAsync(steeringPositions);
+
+            await task1;
+            await task2;
+            await task3;
+            await task4;
+            await task5;
+            await task6;
         }
     }
 }
