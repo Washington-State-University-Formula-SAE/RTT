@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RTTWeb", "RTTWeb\RTTWeb.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{DDF3541F-7F2E-491B-A116-DAC650EACBCF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSaveAzureFunction", "DataSaveAzureFunction\DataSaveAzureFunction.csproj", "{EC8A8412-81C5-41AA-9F91-478C98AF6335}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSave", "DataSaveAzureFunction\DataSave.csproj", "{EC8A8412-81C5-41AA-9F91-478C98AF6335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
