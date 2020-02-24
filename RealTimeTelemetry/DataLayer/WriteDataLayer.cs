@@ -7,13 +7,13 @@ namespace DataLayer
 {
     public class WriteDataLayer
     {
-        private IDataWriteContext _context;
-        public WriteDataLayer()
+        private IDataWrite _context;
+        public WriteDataLayer(IDataWrite context)
         {
-            _context = new SQLData();
+            _context = context ?? throw new Exception("Data write context cannot be null!");
         }
 
-        // Engine RPM
+        #region EngineRPM
         public VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPMs)
         {
             return _context.InsertVehicleRPM(VehicleRPMs);
@@ -22,8 +22,10 @@ namespace DataLayer
         {
             return _context.InsertVehicleRPM(VehicleRPMs);
         }
+        #endregion
 
-        // Vehicle Speed
+
+        #region VehicleSpeed
         public VehicleSpeed InsertVehicleSpeed(VehicleSpeed vehicleSpeed)
         {
             return _context.InsertVehicleSpeed(vehicleSpeed);
@@ -32,8 +34,10 @@ namespace DataLayer
         {
             return _context.InsertVehicleSpeed(vehicleSpeed);
         }
+        #endregion
 
-        // Accelerator Position
+
+        #region AcceleratorPosition
         public AcceleratorPosition InsertAcceleratorPosition(AcceleratorPosition accelPos)
         {
             return _context.InsertAcceleratorPosition(accelPos);
@@ -42,8 +46,10 @@ namespace DataLayer
         {
             return _context.InsertAcceleratorPosition(accelPos);
         }
+        #endregion
 
-        // Brake Active
+
+        #region Brake Active
         public BrakeActive InsertBrakeActive(BrakeActive brakeActive)
         {
             return _context.InsertBrakeActive(brakeActive);
@@ -52,8 +58,10 @@ namespace DataLayer
         {
             return _context.InsertBrakeActive(brakeActive);
         }
+        #endregion
 
-        // Gear Active
+
+        #region GearActive
         public GearActive InsertGearActive(GearActive gearActive)
         {
             return _context.InsertGearActive(gearActive);
@@ -62,8 +70,10 @@ namespace DataLayer
         {
             return _context.InsertGearActive(gearActive);
         }
+        #endregion
 
-        // Wheel Speed
+
+        #region WheelSpeed
         public WheelSpeed InsertWheelSpeed(WheelSpeed wheelSpeed)
         {
             return _context.InsertWheelSpeed(wheelSpeed);
@@ -72,8 +82,10 @@ namespace DataLayer
         {
             return _context.InsertWheelSpeed(wheelSpeed);
         }
+        #endregion
 
-        // Steering Position
+
+        #region SteeringPosition
         public SteeringPosition InsertSteeringPosition(SteeringPosition steeringPos)
         {
             return _context.InsertSteeringPosition(steeringPos);
@@ -82,5 +94,6 @@ namespace DataLayer
         {
             return _context.InsertSteeringPosition(steeringPos);
         }
+        #endregion
     }
 }

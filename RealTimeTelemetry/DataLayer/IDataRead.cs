@@ -4,7 +4,7 @@ using System.Text;
 using Models;
 namespace DataLayer
 {
-    public interface IDataReadContext
+    public interface IDataRead
     {
         // Engine RPM
         VehicleRPM GetMostRecentVehicleRPM();

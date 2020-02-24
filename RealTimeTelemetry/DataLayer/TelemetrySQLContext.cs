@@ -16,11 +16,21 @@ namespace DataLayer
         public DbSet<SteeringPosition> SteeringPosition { get; set; }
         public DbSet<EngineTemperature> EngineTemperature { get; set; }
 
+        public TelematryContext()
+        {
+
+        }
+        public TelematryContext(DbContextOptions<TelematryContext> options): base(options)
+        {
+
+        }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=tcp:hackathon2020fsae.database.windows.net,1433;Initial Catalog=hackathon2020fsae;Persist Security Info=False;User ID=fsae;Password=Admin$123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                throw new Exception("No optionsBuilder is configured!");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

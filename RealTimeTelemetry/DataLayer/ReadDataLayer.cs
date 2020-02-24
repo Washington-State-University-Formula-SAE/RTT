@@ -6,13 +6,13 @@ namespace DataLayer
 {
     public class ReadDataLayer
     {
-        private IDataReadContext _context;
-        public ReadDataLayer()
+        private IDataRead _context;
+        public ReadDataLayer(IDataRead context)
         {
-            _context = new SQLData();
+            _context = context ?? throw new Exception("Data read context cannot be null!");
         }
 
-        // Engine RPM
+        #region EngineRPM
         public VehicleRPM GetMostRecentVehicleRPM()
         {
             return _context.GetMostRecentVehicleRPM();
@@ -25,8 +25,10 @@ namespace DataLayer
         {
             return _context.GetVehicleRPMBetweenTimes(start, end);
         }
+        #endregion
 
-        // Vehicle Speed
+
+        #region VehicleSpeed
         public VehicleSpeed GetMostRecentVehicleSpeed()
         {
             return _context.GetMostRecentVehicleSpeed();
@@ -39,8 +41,10 @@ namespace DataLayer
         {
             return _context.GetVehicleSpeedBetweenTimes(start, end);
         }
+        #endregion
 
-        // Accelerator Position
+
+        #region AcceleratorPosition
         public AcceleratorPosition GetMostRecentAccelertorPosition()
         {
             return _context.GetMostRecentAccelatorPosition();
@@ -53,8 +57,10 @@ namespace DataLayer
         {
             return _context.GetAcceleratorPositionBetweenTimes(start, end);
         }
+        #endregion
 
-        // Brake Active
+
+        #region BrakeActive
         public BrakeActive GetMostRecentBrakeActive()
         {
             return _context.GetMostRecentBrakeActive();
@@ -67,8 +73,10 @@ namespace DataLayer
         {
             return _context.GetBrakeActiveBetweenTimes(start, end);
         }
+        #endregion
 
-        // Gear Active
+
+        #region GearActive
         public GearActive GetMostRecentGearActive()
         {
             return _context.GetMostRecentGearActive();
@@ -81,8 +89,10 @@ namespace DataLayer
         {
             return _context.GetGearActiveBetweenTimes(start, end);
         }
+        #endregion
 
-        // Wheel Speed
+
+        #region WheelSpeed
         public WheelSpeed GetMostRecentWheelSpeed()
         {
             return _context.GetMostRecentWheelSpeed();
@@ -95,8 +105,10 @@ namespace DataLayer
         {
             return _context.GetWheelSpeedBetweenTimes(start, end);
         }
+        #endregion
 
-        // Steering Position
+
+        #region SteeringPosition
         public SteeringPosition GetMostRecentSteeringPosition()
         {
             return _context.GetMostRecentSteeringPosition();
@@ -109,5 +121,6 @@ namespace DataLayer
         {
             return _context.GetSteeringPositionBetweenTimes(start, end);
         }
+        #endregion
     }
 }

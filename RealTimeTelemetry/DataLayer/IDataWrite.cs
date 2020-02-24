@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataLayer
 {
-    interface IDataWriteContext
+    public interface IDataWrite
     {
         // Engine RPM
         VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPMs);

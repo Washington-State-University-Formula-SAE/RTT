@@ -7,14 +7,22 @@ using System.Text;
 
 namespace DataLayer
 {
-    public class SQLData : IDataReadContext, IDataWriteContext
+    public class SQLDatabase : IDataRead, IDataWrite
     {
         private TelematryContext _context;
-        public SQLData()
+        public SQLDatabase(TelematryContext context)
         {
-            _context = new TelematryContext();
+            _context = context ?? throw new Exception("Telematry Context cannot be null!");
         }
-
+        public SQLDatabase(string connectionString)
+        {
+            if (connectionString == "")
+                throw new Exception("Connection string cannot be null");
+            DbContextOptionsBuilder<TelematryContext> builder = new DbContextOptionsBuilder<TelematryContext>();
+            builder.UseSqlServer(connectionString);
+            _context = new TelematryContext(builder.Options);
+        }
+        #region Read
         public IEnumerable<AcceleratorPosition> GetAcceleratorPositionBetweenTimes(DateTime start, DateTime end)
         {
             return _context.AcceleratorPosition.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
@@ -120,6 +128,27 @@ namespace DataLayer
             return _context.WheelSpeed.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
+        public EngineTemperature GetMostRecentEngineTemperature()
+        {
+            return _context.EngineTemperature.AsNoTracking().FirstOrDefault();
+
+        }
+
+        public IEnumerable<EngineTemperature> GetAllEngineTemperature()
+        {
+            return _context.EngineTemperature.AsNoTracking();
+
+        }
+
+        public IEnumerable<EngineTemperature> GetEngineTemperatureBetweenTimes(DateTime start, DateTime end)
+        {
+            return _context.EngineTemperature.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
+        }
+
+        #endregion
+
+
+        #region Write
         public AcceleratorPosition InsertAcceleratorPosition(AcceleratorPosition acceleratorPosition)
         {
             _context.AcceleratorPosition.Add(acceleratorPosition);
@@ -232,23 +261,6 @@ namespace DataLayer
             return wheelSpeed;
         }
 
-        public EngineTemperature GetMostRecentEngineTemperature()
-        {
-            return _context.EngineTemperature.AsNoTracking().FirstOrDefault();
-
-        }
-
-        public IEnumerable<EngineTemperature> GetAllEngineTemperature()
-        {
-            return _context.EngineTemperature.AsNoTracking();
-
-        }
-
-        public IEnumerable<EngineTemperature> GetEngineTemperatureBetweenTimes(DateTime start, DateTime end)
-        {
-            return _context.EngineTemperature.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
-        }
-
         public EngineTemperature InsertEngineTemperature(EngineTemperature engineTemperature)
         {
             _context.EngineTemperature.Add(engineTemperature);
@@ -264,5 +276,6 @@ namespace DataLayer
             _context.Entry(engineTemperature).State = EntityState.Detached;
             return engineTemperature;
         }
+        #endregion
     }
 }
