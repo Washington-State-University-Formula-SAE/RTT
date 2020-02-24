@@ -24,9 +24,15 @@ namespace RTTWeb
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var IOTSettingsConfig = Configuration.GetSection("IOTConnectionStrings");
+            string s_eventHubsCompatibleEndpoint = IOTSettingsConfig["s_eventHubsCompatibleEndpoint"];
+            string s_eventHubsCompatiblePath = IOTSettingsConfig["s_eventHubsCompatiblePath"];
+            string s_iotHubSasKeyName = IOTSettingsConfig["s_iotHubSasKeyName"] ;
+            string s_iotHubSasKey = IOTSettingsConfig["s_iotHubSasKey"];
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<TelemetryService>();
+            services.AddSingleton<TelemetryService>(new TelemetryService(s_eventHubsCompatibleEndpoint, s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

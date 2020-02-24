@@ -1,7 +1,9 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataLayer
 {
@@ -14,85 +16,85 @@ namespace DataLayer
         }
 
         #region EngineRPM
-        public VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPMs)
+        public async Task<VehicleRPM> InsertVehicleRPMAsync(VehicleRPM VehicleRPMs)
         {
-            return _context.InsertVehicleRPM(VehicleRPMs);
+            return await _context.InsertVehicleRPMAsync(VehicleRPMs);
         }
-        public List<VehicleRPM> InsertVehicleRPM(List<VehicleRPM> VehicleRPMs)
+        public async Task<List<VehicleRPM>> InsertVehicleRPMAsync(List<VehicleRPM> VehicleRPMs)
         {
-            return _context.InsertVehicleRPM(VehicleRPMs);
+            return await _context.InsertVehicleRPMAsync(VehicleRPMs);
         }
         #endregion
 
 
         #region VehicleSpeed
-        public VehicleSpeed InsertVehicleSpeed(VehicleSpeed vehicleSpeed)
+        public async Task<VehicleSpeed> InsertVehicleSpeedAsync(VehicleSpeed vehicleSpeed)
         {
-            return _context.InsertVehicleSpeed(vehicleSpeed);
+            return await _context.InsertVehicleSpeedAsync(vehicleSpeed);
         }
-        public List<VehicleSpeed> InsertVehicleSpeed(List<VehicleSpeed> vehicleSpeed)
+        public async Task<List<VehicleSpeed>> InsertVehicleSpeedAsync(List<VehicleSpeed> vehicleSpeed)
         {
-            return _context.InsertVehicleSpeed(vehicleSpeed);
+            return await _context.InsertVehicleSpeedAsync(vehicleSpeed);
         }
         #endregion
 
 
         #region AcceleratorPosition
-        public AcceleratorPosition InsertAcceleratorPosition(AcceleratorPosition accelPos)
+        public async Task<AcceleratorPosition> InsertAcceleratorPositionAsync(AcceleratorPosition accelPos)
         {
-            return _context.InsertAcceleratorPosition(accelPos);
+            return await _context.InsertAcceleratorPositionAsync(accelPos);
         }
-        public List<AcceleratorPosition> InsertAcceleratorPosition(List<AcceleratorPosition> accelPos)
+        public async Task<List<AcceleratorPosition>> InsertAcceleratorPositionAsync(List<AcceleratorPosition> accelPos)
         {
-            return _context.InsertAcceleratorPosition(accelPos);
+            return await _context.InsertAcceleratorPositionAsync(accelPos);
         }
         #endregion
 
 
         #region Brake Active
-        public BrakeActive InsertBrakeActive(BrakeActive brakeActive)
+        public async Task<BrakeActive> InsertBrakeActiveAsync(BrakeActive brakeActive)
         {
-            return _context.InsertBrakeActive(brakeActive);
+            return await _context.InsertBrakeActiveAsync(brakeActive);
         }
-        public List<BrakeActive> InsertBrakeActive(List<BrakeActive> brakeActive)
+        public async Task<List<BrakeActive>> InsertBrakeActiveAsync(List<BrakeActive> brakeActive)
         {
-            return _context.InsertBrakeActive(brakeActive);
+            return await _context.InsertBrakeActiveAsync(brakeActive);
         }
         #endregion
 
 
         #region GearActive
-        public GearActive InsertGearActive(GearActive gearActive)
+        public async Task<GearActive> InsertGearActiveAsync(GearActive gearActive)
         {
-            return _context.InsertGearActive(gearActive);
+            return await _context.InsertGearActiveAsync(gearActive);
         }
-        public List<GearActive> InsertGearActive(List<GearActive> gearActive)
+        public async Task<List<GearActive>> InsertGearActiveAsync(List<GearActive> gearActive)
         {
-            return _context.InsertGearActive(gearActive);
+            return await _context.InsertGearActiveAsync(gearActive);
         }
         #endregion
 
 
         #region WheelSpeed
-        public WheelSpeed InsertWheelSpeed(WheelSpeed wheelSpeed)
+        public async Task<WheelSpeed> InsertWheelSpeedAsync(WheelSpeed wheelSpeed)
         {
-            return _context.InsertWheelSpeed(wheelSpeed);
+            return await _context.InsertWheelSpeedAsync(wheelSpeed);
         }
-        public List<WheelSpeed> InsertWheelSpeed(List<WheelSpeed> wheelSpeed)
+        public async Task<List<WheelSpeed>> InsertWheelSpeedAsync(List<WheelSpeed> wheelSpeed)
         {
-            return _context.InsertWheelSpeed(wheelSpeed);
+            return await _context.InsertWheelSpeedAsync(wheelSpeed);
         }
         #endregion
 
 
         #region SteeringPosition
-        public SteeringPosition InsertSteeringPosition(SteeringPosition steeringPos)
+        public async Task<SteeringPosition> InsertSteeringPositionAsync(SteeringPosition steeringPos)
         {
-            return _context.InsertSteeringPosition(steeringPos);
+            return await _context.InsertSteeringPositionAsync(steeringPos);
         }
-        public List<SteeringPosition> InsertSteeringPosition(List<SteeringPosition> steeringPos)
+        public async Task<List<SteeringPosition>> InsertSteeringPositionAsync(List<SteeringPosition> steeringPos)
         {
-            return _context.InsertSteeringPosition(steeringPos);
+            return await _context.InsertSteeringPositionAsync(steeringPos);
         }
         #endregion
     }

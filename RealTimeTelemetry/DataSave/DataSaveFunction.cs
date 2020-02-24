@@ -17,7 +17,7 @@ namespace DataSaveFunction
         private static WriteDataLayer _context = new WriteDataLayer(new SQLDatabase(connectionString));
 
         [FunctionName("DataSaveFunction")]
-        public static void Run([IoTHubTrigger("messages/events", Connection = "connection")]EventData message, ILogger log)
+        public static async void Run([IoTHubTrigger("messages/events", Connection = "connection")]EventData message, ILogger log)
         {
 
             if (message.SystemProperties.ContainsKey("iothub-connection-device-id"))
@@ -28,25 +28,25 @@ namespace DataSaveFunction
                         VehicleRPM vehicleRPM = new VehicleRPM();
                         vehicleRPM.RPM = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         vehicleRPM.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
-                        _context.InsertVehicleRPM(vehicleRPM);
+                        await _context.InsertVehicleRPMAsync(vehicleRPM);
                         break;
                     case "acceleratorposition":
                         AcceleratorPosition acceleratorPosition = new AcceleratorPosition();
                         acceleratorPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         acceleratorPosition.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
-                        _context.InsertAcceleratorPosition(acceleratorPosition);
+                        await _context.InsertAcceleratorPositionAsync(acceleratorPosition);
                         break;
                     case "vehiclespeed":
                         VehicleSpeed vehicleSpeed = new VehicleSpeed();
                         vehicleSpeed.Speed = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         vehicleSpeed.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
-                        _context.InsertVehicleSpeed(vehicleSpeed);
+                        await _context.InsertVehicleSpeedAsync(vehicleSpeed);
                         break;
                     case "vehiclegearactive":
                         GearActive gearActive = new GearActive();
                         gearActive.Gear = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         gearActive.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
-                        _context.InsertGearActive(gearActive);
+                        await _context.InsertGearActiveAsync(gearActive);
                         break;
                     case "wheelspeed":
                         WheelSpeed wheelSpeed = new WheelSpeed();
@@ -56,13 +56,13 @@ namespace DataSaveFunction
                         wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[2]);
                         wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[3]);
                         wheelSpeed.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
-                        _context.InsertWheelSpeed(wheelSpeed);
+                        await _context.InsertWheelSpeedAsync(wheelSpeed);
                         break;
                     case "steeringposition":
                         SteeringPosition steeringPosition = new SteeringPosition();
                         steeringPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         steeringPosition.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
-                        _context.InsertSteeringPosition(steeringPosition);
+                        await _context.InsertSteeringPositionAsync(steeringPosition);
                         break;
                     default:
                         break;

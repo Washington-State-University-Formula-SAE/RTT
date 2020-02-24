@@ -20,19 +20,15 @@ namespace RTTWeb.Data
 
         // Event Hub-compatible endpoint
         // az iot hub show --query properties.eventHubEndpoints.events.endpoint --name {your IoT Hub name}
-        private readonly static string s_eventHubsCompatibleEndpoint = "sb://iothub-ns-wsufsaehub-2976106-bc7996fee0.servicebus.windows.net/";
 
         // Event Hub-compatible name
         // az iot hub show --query properties.eventHubEndpoints.events.path --name {your IoT Hub name}
-        private readonly static string s_eventHubsCompatiblePath = "wsufsaehub";
 
         // az iot hub policy show --name service --query primaryKey --hub-name {your IoT Hub name}
-        private readonly static string s_iotHubSasKey = "LmNaoKVB5LFyexY/5iYLg2HCiC3rBKNNcVngD06t0oI=";
-        private readonly static string s_iotHubSasKeyName = "service";
         private static EventHubClient s_eventHubClient;
         public TelemetryModel telemetry = new TelemetryModel();
 
-        public TelemetryService(string s_eventHubsCompatibleEndpoint, string s_iotHubSasKeyName, string s_iotHubSasKey)
+        public TelemetryService(string s_eventHubsCompatibleEndpoint, string s_eventHubsCompatiblePath, string s_iotHubSasKeyName, string s_iotHubSasKey)
         {
             try
             {

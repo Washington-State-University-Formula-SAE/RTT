@@ -8,6 +8,7 @@ using Models;
 using System;
 using System.Configuration;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataSaveFunction
 {
@@ -17,7 +18,7 @@ namespace DataSaveFunction
         private static WriteDataLayer _context = new WriteDataLayer(new SQLDatabase(connectionString));
 
         [FunctionName("DataSaveFunction")]
-        public static void Run([IoTHubTrigger("messages/events", Connection = "connection")]EventData[] messages, ILogger log)
+        public static async void Run([IoTHubTrigger("messages/events", Connection = "connection")]EventData[] messages, ILogger log)
         {
             List<VehicleRPM> vehicleRPMs = new List<VehicleRPM>();
             List<AcceleratorPosition> acceleratorPositions = new List<AcceleratorPosition>();
@@ -78,12 +79,12 @@ namespace DataSaveFunction
                 }
                 //log.LogInformation($"C# IoT Hub trigger function processed a message: {Encoding.UTF8.GetString(message.Body.Array)}");
             }
-            _context.InsertVehicleRPM(vehicleRPMs);
-            _context.InsertAcceleratorPosition(acceleratorPositions);
-            _context.InsertVehicleSpeed(vehicleSpeeds);
-            _context.InsertGearActive(gearActives);
-            _context.InsertWheelSpeed(wheelSpeeds);
-            _context.InsertSteeringPosition(steeringPositions);
+            await _context.InsertVehicleRPMAsync(vehicleRPMs);
+            await _context.InsertAcceleratorPositionAsync(acceleratorPositions);
+            await _context.InsertVehicleSpeedAsync(vehicleSpeeds);
+            await _context.InsertGearActiveAsync(gearActives);
+            await _context.InsertWheelSpeedAsync(wheelSpeeds);
+            await _context.InsertSteeringPositionAsync(steeringPositions);
         }
     }
 }

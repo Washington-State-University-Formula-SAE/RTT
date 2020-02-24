@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataLayer
 {
@@ -13,9 +14,9 @@ namespace DataLayer
         }
 
         #region EngineRPM
-        public VehicleRPM GetMostRecentVehicleRPM()
+        public Task<VehicleRPM> GetMostRecentVehicleRPMAsync()
         {
-            return _context.GetMostRecentVehicleRPM();
+            return _context.GetMostRecentVehicleRPMAsync();
         }
         public IEnumerable<VehicleRPM> GetAllVehicleRPM()
         {
@@ -29,9 +30,9 @@ namespace DataLayer
 
 
         #region VehicleSpeed
-        public VehicleSpeed GetMostRecentVehicleSpeed()
+        public Task<VehicleSpeed> GetMostRecentVehicleSpeedAsync()
         {
-            return _context.GetMostRecentVehicleSpeed();
+            return _context.GetMostRecentVehicleSpeedAsync();
         }
         public IEnumerable<VehicleSpeed> GetAllVehicleSpeed()
         {
@@ -45,9 +46,9 @@ namespace DataLayer
 
 
         #region AcceleratorPosition
-        public AcceleratorPosition GetMostRecentAccelertorPosition()
+        public Task<AcceleratorPosition> GetMostRecentAccelertorPositionAsync()
         {
-            return _context.GetMostRecentAccelatorPosition();
+            return _context.GetMostRecentAccelatorPositionAsync();
         }
         public IEnumerable<AcceleratorPosition> GetAllAcceleratorPosition()
         {
@@ -61,9 +62,9 @@ namespace DataLayer
 
 
         #region BrakeActive
-        public BrakeActive GetMostRecentBrakeActive()
+        public Task<BrakeActive> GetMostRecentBrakeActiveAsync()
         {
-            return _context.GetMostRecentBrakeActive();
+            return _context.GetMostRecentBrakeActiveAsync();
         }
         public IEnumerable<BrakeActive> GetAllBrakeActive()
         {
@@ -77,9 +78,9 @@ namespace DataLayer
 
 
         #region GearActive
-        public GearActive GetMostRecentGearActive()
+        public Task<GearActive> GetMostRecentGearActiveAsync()
         {
-            return _context.GetMostRecentGearActive();
+            return _context.GetMostRecentGearActiveAsync();
         }
         public IEnumerable<GearActive> GetAllGearActive()
         {
@@ -93,9 +94,9 @@ namespace DataLayer
 
 
         #region WheelSpeed
-        public WheelSpeed GetMostRecentWheelSpeed()
+        public Task<WheelSpeed> GetMostRecentWheelSpeedAsync()
         {
-            return _context.GetMostRecentWheelSpeed();
+            return _context.GetMostRecentWheelSpeedAsync();
         }
         public IEnumerable<WheelSpeed> GetAllWheelSpeed()
         {
@@ -109,9 +110,9 @@ namespace DataLayer
 
 
         #region SteeringPosition
-        public SteeringPosition GetMostRecentSteeringPosition()
+        public Task<SteeringPosition> GetMostRecentSteeringPositionAsync()
         {
-            return _context.GetMostRecentSteeringPosition();
+            return _context.GetMostRecentSteeringPositionAsync();
         }
         public IEnumerable<SteeringPosition> GetAllSteeringPosition()
         {

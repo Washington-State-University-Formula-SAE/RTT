@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataLayer
 {
@@ -23,259 +24,291 @@ namespace DataLayer
             _context = new TelematryContext(builder.Options);
         }
         #region Read
-        public IEnumerable<AcceleratorPosition> GetAcceleratorPositionBetweenTimes(DateTime start, DateTime end)
+
+        #region AcceleratorPosition
+        public IQueryable<AcceleratorPosition> GetAcceleratorPositionBetweenTimes(DateTime start, DateTime end)
         {
             return _context.AcceleratorPosition.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
-        public IEnumerable<AcceleratorPosition> GetAllAcceleratorPosition()
+        public IQueryable<AcceleratorPosition> GetAllAcceleratorPosition()
         {
             return _context.AcceleratorPosition.AsNoTracking();
         }
+        public async Task<AcceleratorPosition> GetMostRecentAccelatorPositionAsync()
+        {
+            return await _context.AcceleratorPosition.AsNoTracking().FirstOrDefaultAsync();
+        }
+        #endregion
 
-        public IEnumerable<BrakeActive> GetAllBrakeActive()
+
+        #region BrakeActive
+        public IQueryable<BrakeActive> GetAllBrakeActive()
         {
             return _context.BrakeActive.AsNoTracking();
         }
-
-        public IEnumerable<VehicleRPM> GetAllVehicleRPM()
-        {
-            return _context.VehicleRPM.AsNoTracking();
-        }
-
-        public IEnumerable<GearActive> GetAllGearActive()
-        {
-            return _context.GearActive.AsNoTracking();
-        }
-
-        public IEnumerable<SteeringPosition> GetAllSteeringPosition()
-        {
-            return _context.SteeringPosition.AsNoTracking();
-        }
-
-        public IEnumerable<VehicleSpeed> GetAllVehicleSpeed()
-        {
-            return _context.VehicleSpeed.AsNoTracking();
-        }
-
-        public IEnumerable<WheelSpeed> GetAllWheelSpeed()
-        {
-            return _context.WheelSpeed.AsNoTracking();
-        }
-
-        public IEnumerable<BrakeActive> GetBrakeActiveBetweenTimes(DateTime start, DateTime end)
+        public IQueryable<BrakeActive> GetBrakeActiveBetweenTimes(DateTime start, DateTime end)
         {
             return _context.BrakeActive.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
+        public async Task<BrakeActive> GetMostRecentBrakeActiveAsync()
+        {
+            return await _context.BrakeActive.AsNoTracking().FirstOrDefaultAsync();
+        }
+        #endregion
 
-        public IEnumerable<VehicleRPM> GetVehicleRPMBetweenTimes(DateTime start, DateTime end)
+
+        #region VehicleRPM
+        public IQueryable<VehicleRPM> GetAllVehicleRPM()
+        {
+            return _context.VehicleRPM.AsNoTracking();
+        }
+        public IQueryable<VehicleRPM> GetVehicleRPMBetweenTimes(DateTime start, DateTime end)
         {
             return _context.VehicleRPM.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
+        public async Task<VehicleRPM> GetMostRecentVehicleRPMAsync()
+        {
+            return await _context.VehicleRPM.AsNoTracking().FirstOrDefaultAsync();
+        }
+        #endregion
 
-        public IEnumerable<GearActive> GetGearActiveBetweenTimes(DateTime start, DateTime end)
+
+        #region GearActive
+        public IQueryable<GearActive> GetAllGearActive()
+        {
+            return _context.GearActive.AsNoTracking();
+        }
+        public IQueryable<GearActive> GetGearActiveBetweenTimes(DateTime start, DateTime end)
         {
             return _context.GearActive.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
-        public AcceleratorPosition GetMostRecentAccelatorPosition()
+        public async Task<GearActive> GetMostRecentGearActiveAsync()
         {
-            return _context.AcceleratorPosition.AsNoTracking().FirstOrDefault();
+            return await _context.GearActive.AsNoTracking().FirstOrDefaultAsync();
         }
+        #endregion
 
-        public BrakeActive GetMostRecentBrakeActive()
+
+        #region SteeringPosition
+        public IQueryable<SteeringPosition> GetAllSteeringPosition()
         {
-            return _context.BrakeActive.AsNoTracking().FirstOrDefault();
+            return _context.SteeringPosition.AsNoTracking();
         }
-
-        public VehicleRPM GetMostRecentVehicleRPM()
-        {
-            return _context.VehicleRPM.AsNoTracking().FirstOrDefault();
-        }
-
-        public GearActive GetMostRecentGearActive()
-        {
-            return _context.GearActive.AsNoTracking().FirstOrDefault();
-        }
-
-        public SteeringPosition GetMostRecentSteeringPosition()
-        {
-            return _context.SteeringPosition.AsNoTracking().FirstOrDefault();
-        }
-
-        public VehicleSpeed GetMostRecentVehicleSpeed()
-        {
-            return _context.VehicleSpeed.AsNoTracking().FirstOrDefault();
-        }
-
-        public WheelSpeed GetMostRecentWheelSpeed()
-        {
-            return _context.WheelSpeed.AsNoTracking().FirstOrDefault();
-        }
-
-        public IEnumerable<SteeringPosition> GetSteeringPositionBetweenTimes(DateTime start, DateTime end)
+        public IQueryable<SteeringPosition> GetSteeringPositionBetweenTimes(DateTime start, DateTime end)
         {
             return _context.SteeringPosition.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
+        public async Task<SteeringPosition> GetMostRecentSteeringPositionAsync()
+        {
+            return await _context.SteeringPosition.AsNoTracking().FirstOrDefaultAsync();
+        }
+        #endregion
 
-        public IEnumerable<VehicleSpeed> GetVehicleSpeedBetweenTimes(DateTime start, DateTime end)
+
+        #region VehicleSpeed
+        public IQueryable<VehicleSpeed> GetAllVehicleSpeed()
+        {
+            return _context.VehicleSpeed.AsNoTracking();
+        }
+        public IQueryable<VehicleSpeed> GetVehicleSpeedBetweenTimes(DateTime start, DateTime end)
         {
             return _context.VehicleSpeed.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
 
-        public IEnumerable<WheelSpeed> GetWheelSpeedBetweenTimes(DateTime start, DateTime end)
+        public async Task<VehicleSpeed> GetMostRecentVehicleSpeedAsync()
+        {
+            return await _context.VehicleSpeed.AsNoTracking().FirstOrDefaultAsync();
+        }
+        #endregion
+
+
+        #region WheelSpeed
+        public IQueryable<WheelSpeed> GetAllWheelSpeed()
+        {
+            return _context.WheelSpeed.AsNoTracking();
+        }
+        public IQueryable<WheelSpeed> GetWheelSpeedBetweenTimes(DateTime start, DateTime end)
         {
             return _context.WheelSpeed.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
-
-        public EngineTemperature GetMostRecentEngineTemperature()
+        public async Task<WheelSpeed> GetMostRecentWheelSpeedAsync()
         {
-            return _context.EngineTemperature.AsNoTracking().FirstOrDefault();
+            return await _context.WheelSpeed.AsNoTracking().FirstOrDefaultAsync();
+        }
+        #endregion
+
+
+        #region EngineTemperature
+        public async Task<EngineTemperature> GetMostRecentEngineTemperatureAsync()
+        {
+            return await _context.EngineTemperature.AsNoTracking().FirstOrDefaultAsync();
 
         }
-
-        public IEnumerable<EngineTemperature> GetAllEngineTemperature()
+        public IQueryable<EngineTemperature> GetAllEngineTemperature()
         {
             return _context.EngineTemperature.AsNoTracking();
 
         }
-
-        public IEnumerable<EngineTemperature> GetEngineTemperatureBetweenTimes(DateTime start, DateTime end)
+        public IQueryable<EngineTemperature> GetEngineTemperatureBetweenTimes(DateTime start, DateTime end)
         {
             return _context.EngineTemperature.AsNoTracking().Where(u => u.TimeStamp >= start && u.TimeStamp <= end);
         }
+        #endregion
+        #endregion
 
+        #region Write
+        #region AcceleratorPosition
+        public async Task<AcceleratorPosition> InsertAcceleratorPositionAsync(AcceleratorPosition acceleratorPosition)
+        {
+            _context.AcceleratorPosition.Add(acceleratorPosition);
+            await _context.SaveChangesAsync();
+            _context.Entry(acceleratorPosition).State = EntityState.Detached;
+            return acceleratorPosition;
+        }
+
+        public async Task<List<AcceleratorPosition>> InsertAcceleratorPositionAsync(List<AcceleratorPosition> acceleratorPosition)
+        {
+            _context.AcceleratorPosition.AddRange(acceleratorPosition);
+            await _context.SaveChangesAsync();
+            _context.Entry(acceleratorPosition).State = EntityState.Detached;
+            return acceleratorPosition;
+        }
         #endregion
 
 
-        #region Write
-        public AcceleratorPosition InsertAcceleratorPosition(AcceleratorPosition acceleratorPosition)
-        {
-            _context.AcceleratorPosition.Add(acceleratorPosition);
-            _context.SaveChanges();
-            _context.Entry(acceleratorPosition).State = EntityState.Detached;
-            return acceleratorPosition;
-        }
-
-        public List<AcceleratorPosition> InsertAcceleratorPosition(List<AcceleratorPosition> acceleratorPosition)
-        {
-            _context.AcceleratorPosition.AddRange(acceleratorPosition);
-            _context.SaveChanges();
-            _context.Entry(acceleratorPosition).State = EntityState.Detached;
-            return acceleratorPosition;
-        }
-
-        public BrakeActive InsertBrakeActive(BrakeActive brakeActive)
+        #region BrakeActive
+        public async Task<BrakeActive> InsertBrakeActiveAsync(BrakeActive brakeActive)
         {
             _context.BrakeActive.Add(brakeActive);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(brakeActive).State = EntityState.Detached;
             return brakeActive;
         }
 
-        public List<BrakeActive> InsertBrakeActive(List<BrakeActive> brakeActive)
+        public async Task<List<BrakeActive>> InsertBrakeActiveAsync(List<BrakeActive> brakeActive)
         {
             _context.BrakeActive.AddRange(brakeActive);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(brakeActive).State = EntityState.Detached;
             return brakeActive;
         }
+        #endregion
 
-        public VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPM)
+
+        #region VehicleRPM
+        public async Task<VehicleRPM> InsertVehicleRPMAsync(VehicleRPM VehicleRPM)
         {
             _context.VehicleRPM.Add(VehicleRPM);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(VehicleRPM).State = EntityState.Detached;
             return VehicleRPM;
         }
 
-        public List<VehicleRPM> InsertVehicleRPM(List<VehicleRPM> VehicleRPMs)
+        public async Task<List<VehicleRPM>> InsertVehicleRPMAsync(List<VehicleRPM> VehicleRPMs)
         {
             _context.VehicleRPM.AddRange(VehicleRPMs);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(VehicleRPMs).State = EntityState.Detached;
             return VehicleRPMs;
         }
+        #endregion
 
-        public GearActive InsertGearActive(GearActive gearActive)
+
+        #region GearActive
+        public async Task<GearActive> InsertGearActiveAsync(GearActive gearActive)
         {
             _context.GearActive.Add(gearActive);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(gearActive).State = EntityState.Detached;
             return gearActive;
         }
 
-        public List<GearActive> InsertGearActive(List<GearActive> gearActive)
+        public async Task<List<GearActive>> InsertGearActiveAsync(List<GearActive> gearActive)
         {
             _context.GearActive.AddRange(gearActive);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(gearActive).State = EntityState.Detached;
             return gearActive;
         }
+        #endregion
 
-        public SteeringPosition InsertSteeringPosition(SteeringPosition steeringPosition)
+
+        #region SteeringPosition
+        public async Task<SteeringPosition> InsertSteeringPositionAsync(SteeringPosition steeringPosition)
         {
             _context.SteeringPosition.Add(steeringPosition);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(steeringPosition).State = EntityState.Detached;
             return steeringPosition;
         }
 
-        public List<SteeringPosition> InsertSteeringPosition(List<SteeringPosition> steeringPosition)
+        public async Task<List<SteeringPosition>> InsertSteeringPositionAsync(List<SteeringPosition> steeringPosition)
         {
             _context.SteeringPosition.AddRange(steeringPosition);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(steeringPosition).State = EntityState.Detached;
             return steeringPosition;
         }
+        #endregion
 
-        public VehicleSpeed InsertVehicleSpeed(VehicleSpeed vehicleSpeed)
+
+        #region VehicleSpeed
+        public async Task<VehicleSpeed> InsertVehicleSpeedAsync(VehicleSpeed vehicleSpeed)
         {
             _context.VehicleSpeed.Add(vehicleSpeed);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(vehicleSpeed).State = EntityState.Detached;
             return vehicleSpeed;
         }
 
-        public List<VehicleSpeed> InsertVehicleSpeed(List<VehicleSpeed> vehicleSpeed)
+        public async Task<List<VehicleSpeed>> InsertVehicleSpeedAsync(List<VehicleSpeed> vehicleSpeed)
         {
             _context.VehicleSpeed.AddRange(vehicleSpeed);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(vehicleSpeed).State = EntityState.Detached;
             return vehicleSpeed;
         }
+        #endregion
 
-        public WheelSpeed InsertWheelSpeed(WheelSpeed wheelSpeed)
+
+        #region WheelSpeed
+        public async Task<WheelSpeed> InsertWheelSpeedAsync(WheelSpeed wheelSpeed)
         {
             _context.WheelSpeed.Add(wheelSpeed);
+            await _context.SaveChangesAsync();
             _context.Entry(wheelSpeed).State = EntityState.Detached;
-            _context.SaveChanges();
             return wheelSpeed;
         }
 
-        public List<WheelSpeed> InsertWheelSpeed(List<WheelSpeed> wheelSpeed)
+        public async Task<List<WheelSpeed>> InsertWheelSpeedAsync(List<WheelSpeed> wheelSpeed)
         {
             _context.WheelSpeed.AddRange(wheelSpeed);
+            await _context.SaveChangesAsync();
             _context.Entry(wheelSpeed).State = EntityState.Detached;
-            _context.SaveChanges();
             return wheelSpeed;
         }
+        #endregion
 
-        public EngineTemperature InsertEngineTemperature(EngineTemperature engineTemperature)
+
+        #region EngineTemperature
+        public async Task<EngineTemperature> InsertEngineTemperatureAsync(EngineTemperature engineTemperature)
         {
             _context.EngineTemperature.Add(engineTemperature);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(engineTemperature).State = EntityState.Detached;
             return engineTemperature;
         }
 
-        public List<EngineTemperature> InsertEngineTemperature(List<EngineTemperature> engineTemperature)
+        public async Task<List<EngineTemperature>> InsertEngineTemperatureAsync(List<EngineTemperature> engineTemperature)
         {
             _context.EngineTemperature.AddRange(engineTemperature);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             _context.Entry(engineTemperature).State = EntityState.Detached;
             return engineTemperature;
         }
+        #endregion
         #endregion
     }
 }

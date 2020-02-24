@@ -2,56 +2,57 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataLayer
 {
     public interface IDataWrite
     {
         #region EngineRPM
-        VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPMs);
-        List<VehicleRPM> InsertVehicleRPM(List<VehicleRPM> VehicleRPMs);
+        Task<VehicleRPM> InsertVehicleRPMAsync(VehicleRPM VehicleRPMs);
+        Task<List<VehicleRPM>> InsertVehicleRPMAsync(List<VehicleRPM> VehicleRPMs);
         #endregion
 
 
         #region VehicleSpeed
-        VehicleSpeed InsertVehicleSpeed(VehicleSpeed vehicleSpeed);
-        List<VehicleSpeed> InsertVehicleSpeed(List<VehicleSpeed> vehicleSpeed);
+        Task<VehicleSpeed> InsertVehicleSpeedAsync(VehicleSpeed vehicleSpeed);
+        Task<List<VehicleSpeed>> InsertVehicleSpeedAsync(List<VehicleSpeed> vehicleSpeed);
         #endregion
 
 
         #region AcceleratorPosition
-        AcceleratorPosition InsertAcceleratorPosition(AcceleratorPosition acceleratorPosition);
-        List<AcceleratorPosition> InsertAcceleratorPosition(List<AcceleratorPosition> acceleratorPosition);
+        Task<AcceleratorPosition> InsertAcceleratorPositionAsync(AcceleratorPosition acceleratorPosition);
+        Task<List<AcceleratorPosition>> InsertAcceleratorPositionAsync(List<AcceleratorPosition> acceleratorPosition);
         #endregion
 
 
         #region BrakeActive
-        BrakeActive InsertBrakeActive(BrakeActive brakeActive);
-        List<BrakeActive> InsertBrakeActive(List<BrakeActive> brakeActive);
+        Task<BrakeActive> InsertBrakeActiveAsync(BrakeActive brakeActive);
+        Task<List<BrakeActive>> InsertBrakeActiveAsync(List<BrakeActive> brakeActive);
         #endregion
 
 
         #region GearActive
-        GearActive InsertGearActive(GearActive gearActive);
-        List<GearActive> InsertGearActive(List<GearActive> gearActive);
+        Task<GearActive> InsertGearActiveAsync(GearActive gearActive);
+        Task<List<GearActive>> InsertGearActiveAsync(List<GearActive> gearActive);
         #endregion
 
 
         #region WheelSpeed
-        WheelSpeed InsertWheelSpeed(WheelSpeed wheelSpeed);
-        List<WheelSpeed> InsertWheelSpeed(List<WheelSpeed> wheelSpeed);
+        Task<WheelSpeed> InsertWheelSpeedAsync(WheelSpeed wheelSpeed);
+        Task<List<WheelSpeed>> InsertWheelSpeedAsync(List<WheelSpeed> wheelSpeed);
         #endregion
 
 
         #region SteeringPosition
-        SteeringPosition InsertSteeringPosition(SteeringPosition steeringPosition);
-        List<SteeringPosition> InsertSteeringPosition(List<SteeringPosition> steeringPosition);
+        Task<SteeringPosition> InsertSteeringPositionAsync(SteeringPosition steeringPosition);
+        Task<List<SteeringPosition>> InsertSteeringPositionAsync(List<SteeringPosition> steeringPosition);
         #endregion
 
 
         #region EngineTemperature
-        EngineTemperature InsertEngineTemperature(EngineTemperature engineTemperature);
-        List<EngineTemperature> InsertEngineTemperature(List<EngineTemperature> engineTemperature);
+        Task<EngineTemperature> InsertEngineTemperatureAsync(EngineTemperature engineTemperature);
+        Task<List<EngineTemperature>> InsertEngineTemperatureAsync(List<EngineTemperature> engineTemperature);
         #endregion
     }
 }
