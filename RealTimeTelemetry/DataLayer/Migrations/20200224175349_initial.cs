@@ -3,22 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataLayer.Migrations
 {
-    public partial class morestuff : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "VehicleRPM",
-                columns: table => new
-                {
-                    TimeStamp = table.Column<DateTime>(nullable: false),
-                    RPM = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VehicleRPM", x => x.TimeStamp);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AcceleratorPosition",
                 columns: table => new
@@ -44,6 +32,18 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EngineTemperature",
+                columns: table => new
+                {
+                    TimeStamp = table.Column<DateTime>(nullable: false),
+                    Temperature = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EngineTemperature", x => x.TimeStamp);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GearActive",
                 columns: table => new
                 {
@@ -65,6 +65,18 @@ namespace DataLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SteeringPosition", x => x.TimeStamp);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VehicleRPM",
+                columns: table => new
+                {
+                    TimeStamp = table.Column<DateTime>(nullable: false),
+                    RPM = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VehicleRPM", x => x.TimeStamp);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,25 +116,22 @@ namespace DataLayer.Migrations
                 name: "BrakeActive");
 
             migrationBuilder.DropTable(
+                name: "EngineTemperature");
+
+            migrationBuilder.DropTable(
                 name: "GearActive");
 
             migrationBuilder.DropTable(
                 name: "SteeringPosition");
 
             migrationBuilder.DropTable(
+                name: "VehicleRPM");
+
+            migrationBuilder.DropTable(
                 name: "VehicleSpeed");
 
             migrationBuilder.DropTable(
                 name: "WheelSpeed");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_VehicleRPM",
-                table: "VehicleRPM");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PrimaryKey_RPMTimeStamp",
-                table: "VehicleRPM",
-                columns: new[] { "RPM", "TimeStamp" });
         }
     }
 }

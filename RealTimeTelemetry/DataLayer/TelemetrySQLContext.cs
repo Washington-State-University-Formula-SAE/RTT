@@ -30,6 +30,7 @@ namespace DataLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
+                //optionsBuilder.UseSqlServer("connection string (ONLY CONFIGURE THIS FOR MIGRATIONS!!!)");
                 throw new Exception("No optionsBuilder is configured!");
             }
         }

@@ -7,35 +7,51 @@ namespace DataLayer
 {
     public interface IDataWrite
     {
-        // Engine RPM
+        #region EngineRPM
         VehicleRPM InsertVehicleRPM(VehicleRPM VehicleRPMs);
         List<VehicleRPM> InsertVehicleRPM(List<VehicleRPM> VehicleRPMs);
+        #endregion
 
-        // Vehicle Speed
+
+        #region VehicleSpeed
         VehicleSpeed InsertVehicleSpeed(VehicleSpeed vehicleSpeed);
         List<VehicleSpeed> InsertVehicleSpeed(List<VehicleSpeed> vehicleSpeed);
+        #endregion
 
-        // Accelerator Position
+
+        #region AcceleratorPosition
         AcceleratorPosition InsertAcceleratorPosition(AcceleratorPosition acceleratorPosition);
         List<AcceleratorPosition> InsertAcceleratorPosition(List<AcceleratorPosition> acceleratorPosition);
+        #endregion
 
-        // Brake Active
+
+        #region BrakeActive
         BrakeActive InsertBrakeActive(BrakeActive brakeActive);
         List<BrakeActive> InsertBrakeActive(List<BrakeActive> brakeActive);
+        #endregion
 
-        // Gear Active
+
+        #region GearActive
         GearActive InsertGearActive(GearActive gearActive);
         List<GearActive> InsertGearActive(List<GearActive> gearActive);
+        #endregion
 
-        // Wheel Speed
+
+        #region WheelSpeed
         WheelSpeed InsertWheelSpeed(WheelSpeed wheelSpeed);
         List<WheelSpeed> InsertWheelSpeed(List<WheelSpeed> wheelSpeed);
+        #endregion
 
-        // Steering Position
+
+        #region SteeringPosition
         SteeringPosition InsertSteeringPosition(SteeringPosition steeringPosition);
         List<SteeringPosition> InsertSteeringPosition(List<SteeringPosition> steeringPosition);
+        #endregion
 
+
+        #region EngineTemperature
         EngineTemperature InsertEngineTemperature(EngineTemperature engineTemperature);
         List<EngineTemperature> InsertEngineTemperature(List<EngineTemperature> engineTemperature);
+        #endregion
     }
 }

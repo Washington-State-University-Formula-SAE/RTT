@@ -6,44 +6,59 @@ namespace DataLayer
 {
     public interface IDataRead
     {
-        // Engine RPM
+        #region EngineRPM
         VehicleRPM GetMostRecentVehicleRPM();
         IEnumerable<VehicleRPM> GetAllVehicleRPM();
         IEnumerable<VehicleRPM> GetVehicleRPMBetweenTimes(DateTime start, DateTime end);
+        #endregion
 
-        // Vehicle Speed
+
+        #region VehicleSpeed
         VehicleSpeed GetMostRecentVehicleSpeed();
         IEnumerable<VehicleSpeed> GetAllVehicleSpeed();
         IEnumerable<VehicleSpeed> GetVehicleSpeedBetweenTimes(DateTime start, DateTime end);
+        #endregion
 
-        // Accelerator Position
+
+        #region AcceleratorPosition
         AcceleratorPosition GetMostRecentAccelatorPosition();
         IEnumerable<AcceleratorPosition> GetAllAcceleratorPosition();
         IEnumerable<AcceleratorPosition> GetAcceleratorPositionBetweenTimes(DateTime start, DateTime end);
+        #endregion
 
-        // Brake Active
+
+        #region BrakeActive
         BrakeActive GetMostRecentBrakeActive();
         IEnumerable<BrakeActive> GetAllBrakeActive();
         IEnumerable<BrakeActive> GetBrakeActiveBetweenTimes(DateTime start, DateTime end);
+        #endregion
 
-        // Gear Active
+
+        #region GearActive
         GearActive GetMostRecentGearActive();
         IEnumerable<GearActive> GetAllGearActive();
         IEnumerable<GearActive> GetGearActiveBetweenTimes(DateTime start, DateTime end);
+        #endregion
 
-        // Wheel Speed
+
+        #region WheelSpeed
         WheelSpeed GetMostRecentWheelSpeed();
         IEnumerable<WheelSpeed> GetAllWheelSpeed();
         IEnumerable<WheelSpeed> GetWheelSpeedBetweenTimes(DateTime start, DateTime end);
+        #endregion
 
-        // Steering Position
+
+        #region SteeringPosition
         SteeringPosition GetMostRecentSteeringPosition();
         IEnumerable<SteeringPosition> GetAllSteeringPosition();
         IEnumerable<SteeringPosition> GetSteeringPositionBetweenTimes(DateTime start, DateTime end);
+        #endregion
 
-        // Engine Temperature
+
+        #region EngineTemperature
         EngineTemperature GetMostRecentEngineTemperature();
         IEnumerable<EngineTemperature> GetAllEngineTemperature();
         IEnumerable<EngineTemperature> GetEngineTemperatureBetweenTimes(DateTime start, DateTime end);
+        #endregion
     }
 }

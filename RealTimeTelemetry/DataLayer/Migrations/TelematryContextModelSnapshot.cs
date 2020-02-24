@@ -45,6 +45,19 @@ namespace DataLayer.Migrations
                     b.ToTable("BrakeActive");
                 });
 
+            modelBuilder.Entity("Models.EngineTemperature", b =>
+                {
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Temperature")
+                        .HasColumnType("int");
+
+                    b.HasKey("TimeStamp");
+
+                    b.ToTable("EngineTemperature");
+                });
+
             modelBuilder.Entity("Models.GearActive", b =>
                 {
                     b.Property<DateTime>("TimeStamp")

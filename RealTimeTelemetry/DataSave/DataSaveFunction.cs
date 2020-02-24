@@ -22,33 +22,33 @@ namespace DataSaveFunction
 
             if (message.SystemProperties.ContainsKey("iothub-connection-device-id"))
             {
-                switch (message.SystemProperties["iothub-connection-device-id"])
+                switch (message.SystemProperties["iothub-connection-device-id"].ToString().ToLower())
                 {
-                    case "vehicleRPM":
+                    case "vehiclerpm":
                         VehicleRPM vehicleRPM = new VehicleRPM();
                         vehicleRPM.RPM = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         vehicleRPM.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
                         _context.InsertVehicleRPM(vehicleRPM);
                         break;
-                    case "acceleratorPosition":
+                    case "acceleratorposition":
                         AcceleratorPosition acceleratorPosition = new AcceleratorPosition();
                         acceleratorPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         acceleratorPosition.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
                         _context.InsertAcceleratorPosition(acceleratorPosition);
                         break;
-                    case "vehicleSpeed":
+                    case "vehiclespeed":
                         VehicleSpeed vehicleSpeed = new VehicleSpeed();
                         vehicleSpeed.Speed = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         vehicleSpeed.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
                         _context.InsertVehicleSpeed(vehicleSpeed);
                         break;
-                    case "vehicleGearActive":
+                    case "vehiclegearactive":
                         GearActive gearActive = new GearActive();
                         gearActive.Gear = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         gearActive.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
                         _context.InsertGearActive(gearActive);
                         break;
-                    case "wheelSpeed":
+                    case "wheelspeed":
                         WheelSpeed wheelSpeed = new WheelSpeed();
                         string[] allWheels = Encoding.UTF8.GetString(message.Body.Array).Split(',');
                         wheelSpeed.FrontDriver = Convert.ToInt16(allWheels[0]);
@@ -58,7 +58,7 @@ namespace DataSaveFunction
                         wheelSpeed.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
                         _context.InsertWheelSpeed(wheelSpeed);
                         break;
-                    case "steeringPosition":
+                    case "steeringposition":
                         SteeringPosition steeringPosition = new SteeringPosition();
                         steeringPosition.Position = Convert.ToInt32(Encoding.UTF8.GetString(message.Body.Array));
                         steeringPosition.TimeStamp = (DateTime)message.SystemProperties["iothub-enqueuedtime"];
