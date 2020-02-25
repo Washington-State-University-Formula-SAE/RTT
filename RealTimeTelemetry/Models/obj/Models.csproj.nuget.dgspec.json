@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gunra\\Source\\Repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj": {}
+    "C:\\Users\\gunra\\source\\repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gunra\\Source\\Repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj": {
+    "C:\\Users\\gunra\\source\\repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gunra\\Source\\Repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\gunra\\source\\repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\gunra\\Source\\Repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\gunra\\source\\repos\\RTT\\RealTimeTelemetry\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\gunra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gunra\\Source\\Repos\\RTT\\RealTimeTelemetry\\Models\\obj\\",
+        "outputPath": "C:\\Users\\gunra\\source\\repos\\RTT\\RealTimeTelemetry\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gunra\\AppData\\Roaming\\NuGet\\NuGet.Config",

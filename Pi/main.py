@@ -6,5 +6,5 @@ from can_receive import CANInterface
 
 if __name__ == "__main__":
     can = CANInterface()
-    can.startReceive()
+    can.start_receive_serial()
     

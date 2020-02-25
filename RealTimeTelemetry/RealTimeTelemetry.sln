@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RTTWeb", "RTTWeb\RTTWeb.csproj", "{394607FD-DB3C-4C79-A051-8383F3A52A1E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{DDF3541F-7F2E-491B-A116-DAC650EACBCF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSaveAzureFunction", "DataSaveAzureFunction\DataSaveAzureFunction.csproj", "{EC8A8412-81C5-41AA-9F91-478C98AF6335}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{394607FD-DB3C-4C79-A051-8383F3A52A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{394607FD-DB3C-4C79-A051-8383F3A52A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{394607FD-DB3C-4C79-A051-8383F3A52A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF3541F-7F2E-491B-A116-DAC650EACBCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF3541F-7F2E-491B-A116-DAC650EACBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF3541F-7F2E-491B-A116-DAC650EACBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF3541F-7F2E-491B-A116-DAC650EACBCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8A8412-81C5-41AA-9F91-478C98AF6335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8A8412-81C5-41AA-9F91-478C98AF6335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8A8412-81C5-41AA-9F91-478C98AF6335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8A8412-81C5-41AA-9F91-478C98AF6335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

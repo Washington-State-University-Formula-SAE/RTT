@@ -1,4 +1,13 @@
 1. creates device is iothub named MyPythonDevice
-az iot hub device-identity create --hub-name hackathon2020fsae --device-id MyPythonDevice
+az iot hub device-identity create --hub-name hackathon2020fsae --device-id 
 2. gets connection-string
 az iot hub device-identity show-connection-string --hub-name hackathon2020fsae --device-id MyPythonDevice --output table
+
+
+az iot hub device-identity create --hub-name wsufsaehub --device-id acceleratorPosition
+az iot hub device-identity create --hub-name wsufsaehub --device-id brakeActive
+az iot hub device-identity create --hub-name wsufsaehub --device-id vehicleRPM
+az iot hub device-identity create --hub-name wsufsaehub --device-id vehicleSpeed
+az iot hub device-identity create --hub-name wsufsaehub --device-id vehicleGearActive
+az iot hub device-identity create --hub-name wsufsaehub --device-id vehicleWheelSpeeds
+az iot hub device-identity create --hub-name wsufsaehub --device-id steeringPosition
