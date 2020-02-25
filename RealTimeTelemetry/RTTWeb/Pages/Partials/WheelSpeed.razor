@@ -1,4 +1,6 @@
 ﻿@using RTTWeb.Data
+@using RTTWeb.Data.ViewModels
+@using Models
 
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.LineChart
@@ -12,11 +14,11 @@
 @using ChartJs.Blazor.ChartJS.Common.Time
 @using ChartJs.Blazor.Util
 
-@inject TelemetryService telem
-
 <ChartJs.Blazor.Charts.ChartJsLineChart @ref="_chart" Config="_config" Width="1200" Height="300" />
 
 @code {
+    [Parameter]
+    public WheelSpeedVM wheelSpeedVM { get; set; }
     private int num = 0;
     private LineConfig _config;
     private ChartJsLineChart _chart;
@@ -53,7 +55,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-            {
+{
                         new TimeAxis
                         {
                             Distribution = TimeDistribution.Linear,
@@ -137,13 +139,13 @@
 
         // ...
 
-        telem.telemetry.WheelSpeedChanged += OnModelChange;
+        wheelSpeedVM.WheelSpeedUpdated += OnModelChange;
         base.OnInitialized();
     }
 
-    public async void OnModelChange()
+    public async void OnModelChange(object sender, Models.WheelSpeed newWheelSpeed)
     {
-        if (telem.telemetry.VehicleRPM == null)
+        if (newWheelSpeed == null)
         {
             return;
         }
@@ -154,13 +156,12 @@
             _rrDataSet.RemoveAt(0);
             _rlDataSet.RemoveAt(0);
         }
-        _frDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.FrontPassenger));
-        _flDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.FrontDriver));
-        _rrDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.RearPassenger));
-        _rlDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), (int)telem.telemetry.WheelSpeed.RearDriver));
+        _frDataSet.Add(new TimeTuple<int>(new Moment(newWheelSpeed.TimeStamp), (int)newWheelSpeed.FrontPassenger));
+        _flDataSet.Add(new TimeTuple<int>(new Moment(newWheelSpeed.TimeStamp), (int)newWheelSpeed.FrontDriver));
+        _rrDataSet.Add(new TimeTuple<int>(new Moment(newWheelSpeed.TimeStamp), (int)newWheelSpeed.RearPassenger));
+        _rlDataSet.Add(new TimeTuple<int>(new Moment(newWheelSpeed.TimeStamp), (int)newWheelSpeed.RearDriver));
 
         // Update the UI
-        this.StateHasChanged();
-        await _chart.Update();
+        await InvokeAsync(() => StateHasChanged());
     }
 }

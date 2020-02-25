@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RTTWeb.Data;
+using RTTWeb.Data.ViewModels;
 
 namespace RTTWeb
 {
@@ -30,9 +31,20 @@ namespace RTTWeb
             string s_iotHubSasKeyName = IOTSettingsConfig["s_iotHubSasKeyName"] ;
             string s_iotHubSasKey = IOTSettingsConfig["s_iotHubSasKey"];
 
+            var telemService = new TelemetryService(s_eventHubsCompatibleEndpoint, s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey);
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<TelemetryService>(new TelemetryService(s_eventHubsCompatibleEndpoint, s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey));
+            services.AddSingleton<TelemetryService>(telemService);
+            services.AddSingleton<VehicleRPMVM>(new VehicleRPMVM(telemService));
+            services.AddSingleton<AcceleratorPositionVM>(new AcceleratorPositionVM(telemService));
+            services.AddSingleton<BrakeActiveVM>(new BrakeActiveVM(telemService));
+            services.AddSingleton<EngineTemperatureVM>(new EngineTemperatureVM(telemService));
+            services.AddSingleton<GearActiveVM>(new GearActiveVM(telemService));
+            services.AddSingleton<SteeringPositionVM>(new SteeringPositionVM(telemService));
+            services.AddSingleton<VehicleSpeedVM>(new VehicleSpeedVM(telemService));
+            services.AddSingleton<WheelSpeedVM>(new WheelSpeedVM(telemService));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

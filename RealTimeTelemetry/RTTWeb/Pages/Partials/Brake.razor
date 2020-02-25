@@ -1,5 +1,6 @@
 ﻿@using RTTWeb.Data
-
+@using RTTWeb.Data.ViewModels
+@using Models
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Charts
@@ -12,11 +13,11 @@
 @using ChartJs.Blazor.ChartJS.Common.Time
 @using ChartJs.Blazor.Util
 
-@inject TelemetryService telem
-
 <ChartJs.Blazor.Charts.ChartJsLineChart @ref="_chart" Config="_config" Width="1200" Height="300" />
 
 @code {
+    [Parameter]
+    public BrakeActiveVM brakeActiveVM { get; set; }
     private int num = 0;
     private LineConfig _config;
     private ChartJsLineChart _chart;
@@ -50,7 +51,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-            {
+    {
                         new TimeAxis
                         {
                             Distribution = TimeDistribution.Linear,
@@ -98,13 +99,13 @@
 
         // ...
 
-        telem.telemetry.BrakeActiveChanged += OnModelChange;
+        brakeActiveVM.BrakeActiveUpdated += OnModelChange;
         base.OnInitialized();
     }
 
-    public async void OnModelChange()
+    public async void OnModelChange(object sender, BrakeActive newBrakeActive)
     {
-        if (telem.telemetry.VehicleRPM == null)
+        if (newBrakeActive == null)
         {
             return;
         }
@@ -112,10 +113,9 @@
         {
             _tempDataSet.RemoveAt(0);
         }
-        _tempDataSet.Add(new TimeTuple<int>(new Moment(DateTime.Now), telem.telemetry.BrakeActive.Active ? 1 : 0));
+        _tempDataSet.Add(new TimeTuple<int>(new Moment(newBrakeActive.TimeStamp), newBrakeActive.Active ? 1 : 0));
 
         // Update the UI
-        this.StateHasChanged();
-        await _chart.Update();
+        await InvokeAsync(() => StateHasChanged());
     }
 }

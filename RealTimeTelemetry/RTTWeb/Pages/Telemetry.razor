@@ -1,13 +1,21 @@
-﻿@page "/telemetry"
+﻿@using RTTWeb.Data.ViewModels
+@page "/telemetry"
 
+@inject VehicleRPMVM  vehicleRPMVM
+@inject AcceleratorPositionVM  acceleratorPositionVM
+@inject BrakeActiveVM  brakeActiveVM
+@inject VehicleSpeedVM  vehicleSpeedVM
+@inject WheelSpeedVM  wheelSpeedVM
+@inject GearActiveVM  gearActiveVM
+@inject SteeringPositionVM  steeringPositionVM
 <div>
     <ul style="list-style:none; display:inline-block">
-        <li style="display:inline;" ><RTTWeb.Pages.Partials.RPM /></li>
-        <li style="display:inline;" ><RTTWeb.Pages.Partials.Accelerator /></li>
-        <li style="display:inline;" ><RTTWeb.Pages.Partials.Brake /></li>
-        <li style="display:inline;" ><RTTWeb.Pages.Partials.VehicleSpeed /></li>
-        <li style="display:inline;" ><RTTWeb.Pages.Partials.WheelSpeed /></li>
-        <li style="display:inline;" ><RTTWeb.Pages.Partials.Gear /></li>
-        <li style="display:inline;" ><RTTWeb.Pages.Partials.Steering /></li>
+        <li style="display:inline;"><RTTWeb.Pages.Partials.RPM vehicleRPM="vehicleRPMVM" /></li>
+        <li style="display:inline;"><RTTWeb.Pages.Partials.Accelerator acceleratorPositionVM="acceleratorPositionVM" /></li>
+        <li style="display:inline;"><RTTWeb.Pages.Partials.Brake brakeActiveVM="brakeActiveVM" /></li>
+        <li style="display:inline;"><RTTWeb.Pages.Partials.VehicleSpeed vehicleSpeedVM="vehicleSpeedVM" /></li>
+        <li style="display:inline;"><RTTWeb.Pages.Partials.WheelSpeed wheelSpeedVM="wheelSpeedVM" /></li>
+        <li style="display:inline;"><RTTWeb.Pages.Partials.Gear gearActiveVM="gearActiveVM" /></li>
+        <li style="display:inline;"><RTTWeb.Pages.Partials.Steering steeringPositionVM="steeringPositionVM" /></li>
     </ul>
 </div>
