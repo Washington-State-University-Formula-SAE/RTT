@@ -12,6 +12,7 @@ class CANInterface():
         self.acceleratorPosition = acceleratorPosition()        
         self.brakeActive = brakeActive()
         self.vehicleGearActive = vehicleGearActive()
+        self.steering = steeringPosition()
 
         self.canMessage = None
         self.canId = None
@@ -63,6 +64,23 @@ class CANInterface():
         
         joinHex = ''.join(self.canMessage[3:5]) # combine multiple bytes into one string
         rpmMessage = (int(joinHex, 16)/4)
+    def RecieveMessageSimulation(self, message):
+        message = message.split()
+        if len(message) > 0:
+            message[1] = message[1][0:-1]
+            if message[0] == 'ID:':
+                self.__AddToSensor(message)
+
+    def __AddToSensor(self, message):
+            if message[1] == '201': # speed
+                speedMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
+                self.vehicleSpeed.SendData(speedMessage)
+            if message[1] == '202': #rpm
+                RPMMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
+                self.vehicleRPM.SendData(RPMMessage)
+            elif message[1] == '203': #steering
+                steeringMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
+                self.steering.SendData(steeringMessage)
 
         acceleratorMessage = (int(self.canMessage[9], 16)) # accelerator position, max value is 200
 
