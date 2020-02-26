@@ -1,4 +1,4 @@
-from MQTTDevice import MQTTDevice
+from MQTT.MQTTDevice import MQTTDevice
 
 class vehicleRPM(MQTTDevice):
     def __init__(self):
