@@ -1,21 +1,22 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataLayer
 {
     public class ReadDataLayer
     {
-        private IDataReadContext _context;
-        public ReadDataLayer()
+        private IDataRead _context;
+        public ReadDataLayer(IDataRead context)
         {
-            _context = new SQLData();
+            _context = context ?? throw new Exception("Data read context cannot be null!");
         }
 
-        // Engine RPM
-        public VehicleRPM GetMostRecentVehicleRPM()
+        #region EngineRPM
+        public Task<VehicleRPM> GetMostRecentVehicleRPMAsync()
         {
-            return _context.GetMostRecentVehicleRPM();
+            return _context.GetMostRecentVehicleRPMAsync();
         }
         public IEnumerable<VehicleRPM> GetAllVehicleRPM()
         {
@@ -25,11 +26,13 @@ namespace DataLayer
         {
             return _context.GetVehicleRPMBetweenTimes(start, end);
         }
+        #endregion
 
-        // Vehicle Speed
-        public VehicleSpeed GetMostRecentVehicleSpeed()
+
+        #region VehicleSpeed
+        public Task<VehicleSpeed> GetMostRecentVehicleSpeedAsync()
         {
-            return _context.GetMostRecentVehicleSpeed();
+            return _context.GetMostRecentVehicleSpeedAsync();
         }
         public IEnumerable<VehicleSpeed> GetAllVehicleSpeed()
         {
@@ -39,11 +42,13 @@ namespace DataLayer
         {
             return _context.GetVehicleSpeedBetweenTimes(start, end);
         }
+        #endregion
 
-        // Accelerator Position
-        public AcceleratorPosition GetMostRecentAccelertorPosition()
+
+        #region AcceleratorPosition
+        public Task<AcceleratorPosition> GetMostRecentAccelertorPositionAsync()
         {
-            return _context.GetMostRecentAccelatorPosition();
+            return _context.GetMostRecentAccelatorPositionAsync();
         }
         public IEnumerable<AcceleratorPosition> GetAllAcceleratorPosition()
         {
@@ -53,11 +58,13 @@ namespace DataLayer
         {
             return _context.GetAcceleratorPositionBetweenTimes(start, end);
         }
+        #endregion
 
-        // Brake Active
-        public BrakeActive GetMostRecentBrakeActive()
+
+        #region BrakeActive
+        public Task<BrakeActive> GetMostRecentBrakeActiveAsync()
         {
-            return _context.GetMostRecentBrakeActive();
+            return _context.GetMostRecentBrakeActiveAsync();
         }
         public IEnumerable<BrakeActive> GetAllBrakeActive()
         {
@@ -67,11 +74,13 @@ namespace DataLayer
         {
             return _context.GetBrakeActiveBetweenTimes(start, end);
         }
+        #endregion
 
-        // Gear Active
-        public GearActive GetMostRecentGearActive()
+
+        #region GearActive
+        public Task<GearActive> GetMostRecentGearActiveAsync()
         {
-            return _context.GetMostRecentGearActive();
+            return _context.GetMostRecentGearActiveAsync();
         }
         public IEnumerable<GearActive> GetAllGearActive()
         {
@@ -81,11 +90,13 @@ namespace DataLayer
         {
             return _context.GetGearActiveBetweenTimes(start, end);
         }
+        #endregion
 
-        // Wheel Speed
-        public WheelSpeed GetMostRecentWheelSpeed()
+
+        #region WheelSpeed
+        public Task<WheelSpeed> GetMostRecentWheelSpeedAsync()
         {
-            return _context.GetMostRecentWheelSpeed();
+            return _context.GetMostRecentWheelSpeedAsync();
         }
         public IEnumerable<WheelSpeed> GetAllWheelSpeed()
         {
@@ -95,11 +106,13 @@ namespace DataLayer
         {
             return _context.GetWheelSpeedBetweenTimes(start, end);
         }
+        #endregion
 
-        // Steering Position
-        public SteeringPosition GetMostRecentSteeringPosition()
+
+        #region SteeringPosition
+        public Task<SteeringPosition> GetMostRecentSteeringPositionAsync()
         {
-            return _context.GetMostRecentSteeringPosition();
+            return _context.GetMostRecentSteeringPositionAsync();
         }
         public IEnumerable<SteeringPosition> GetAllSteeringPosition()
         {
@@ -109,5 +122,6 @@ namespace DataLayer
         {
             return _context.GetSteeringPositionBetweenTimes(start, end);
         }
+        #endregion
     }
 }

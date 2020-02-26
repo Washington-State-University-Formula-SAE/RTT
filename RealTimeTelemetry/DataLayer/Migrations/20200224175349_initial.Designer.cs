@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(TelematryContext))]
-    [Migration("20200223094749_morestuff")]
-    partial class morestuff
+    [Migration("20200224175349_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,19 @@ namespace DataLayer.Migrations
                     b.HasKey("TimeStamp");
 
                     b.ToTable("BrakeActive");
+                });
+
+            modelBuilder.Entity("Models.EngineTemperature", b =>
+                {
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Temperature")
+                        .HasColumnType("int");
+
+                    b.HasKey("TimeStamp");
+
+                    b.ToTable("EngineTemperature");
                 });
 
             modelBuilder.Entity("Models.GearActive", b =>
