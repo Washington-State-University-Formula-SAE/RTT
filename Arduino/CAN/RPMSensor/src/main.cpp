@@ -1,9 +1,5 @@
 /****************************************************************************
-CAN Write Demo for the SparkFun CAN Bus Shield. 
-Written by Stephen McCoy. 
-Original tutorial available here: http://www.instructables.com/id/CAN-Bus-Sniffing-and-Broadcasting-with-Arduino
-Used with permission 2016. License CC By SA. 
-Distributed as-is; no warranty is given.
+  This file is primarily used for sending test data from an arduino.
 *************************************************************************/
 
 #include <Arduino.h>
@@ -12,6 +8,7 @@ Distributed as-is; no warranty is given.
 #include <global.h>
 #include <mcp2515.h>
 #include <mcp2515_defs.h>
+
 
 //********************************Setup Loop*********************************//
 int count = 0;
