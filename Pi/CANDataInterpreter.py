@@ -1,9 +1,8 @@
+from MQTT.vehicleMQTT import *
 import os
 import can
 import time
 import serial
-from MQTT.vehicleMQTT import *
-from sensors import *
 
 class CANInterface():
 
