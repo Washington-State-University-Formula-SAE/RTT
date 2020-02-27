@@ -72,21 +72,15 @@ class CANInterface():
                 self.__AddToSensor(message)
 
     def __AddToSensor(self, message):
-            if message[1] == '201': # speed
-                speedMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
-                self.vehicleSpeed.SendData(speedMessage)
-            if message[1] == '202': #rpm
-                RPMMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
-                self.vehicleRPM.SendData(RPMMessage)
-            elif message[1] == '203': #steering
-                steeringMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
-                self.steering.SendData(steeringMessage)
-
-        acceleratorMessage = (int(self.canMessage[9], 16)) # accelerator position, max value is 200
-
-        self.vehicleSpeed.SendData(speedMessage) # send vehicle speed to server
-        self.vehicleRPM.SendData(rpmMessage)    # send vehicle rpm to server
-        self.acceleratorPosition.SendData(acceleratorMessage) # send accelerator position to server
+        if message[1] == '201': # speed
+            speedMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
+            self.vehicleSpeed.SendData(speedMessage)
+        if message[1] == '202': #rpm
+            RPMMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
+            self.vehicleRPM.SendData(RPMMessage)
+        elif message[1] == '203': #steering
+            steeringMessage = ((int(message[7], 16)*256)+int(message[8], 16)) # km/h
+            self.steering.SendData(steeringMessage)
 
     # if the brake pedal is being pressed, ford
     def brake_applied_ford(self):

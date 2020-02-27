@@ -11,7 +11,7 @@ FPS    = pygame.time.Clock()
 
 pygame.display.set_caption('Screen Wrapping')
 
-track = pygame.image.load('C:/git/fsae/RTT/Pi/Track.png').convert()
+track = pygame.image.load('Track.png').convert()
 
 def on_track(sprite):
     '''Tests to see if car is on the track'''
@@ -21,7 +21,7 @@ def on_track(sprite):
     return False
 
 class Car(object):
-    def __init__(self, start_pos = (73, 370), start_angle = 90, image = 'C:/git/fsae/RTT/Pi/Car.png'):
+    def __init__(self, start_pos = (73, 370), start_angle = 90, image = 'Car.png'):
         '''Initialises the Car object'''
         self.x     = start_pos[0]
         self.y     = start_pos[1]
@@ -92,6 +92,7 @@ class Car(object):
 def main():
     car = Car()
     canInterface = CANInterface()
+    count = 0
     while True:
         #Blit the track to the background
         SCREEN.blit(track, (0, 0))
@@ -105,9 +106,10 @@ def main():
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-        canInterface.RecieveMessageSimulation(f"ID: 201, 0 0 0 0 0 {hex(int(car.speed/256))[2:]} {hex(int(car.speed%256))[2:]} 0")
-        canInterface.RecieveMessageSimulation(f"ID: 202, 0 0 0 0 0 {hex((int(car.speed*10/256)))[2:]} {hex((int(car.speed*10)%256))[2:]} 0")
-        canInterface.RecieveMessageSimulation(f"ID: 203, 0 0 0 0 0 {hex(int(car.angle/256))[2:]} {hex(int(car.angle%256))[2:]} 0")
+        if count % 15 == 0:
+            canInterface.RecieveMessageSimulation(f"ID: 201, 0 0 0 0 0 {hex(int(car.speed/256))[2:]} {hex(int(car.speed%256))[2:]} 0")
+            canInterface.RecieveMessageSimulation(f"ID: 202, 0 0 0 0 0 {hex((int(car.speed*10/256)))[2:]} {hex((int(car.speed*10)%256))[2:]} 0")
+            canInterface.RecieveMessageSimulation(f"ID: 203, 0 0 0 0 0 {hex(int(car.angle/256))[2:]} {hex(int(car.angle%256))[2:]} 0")
 
 
         car.move()
@@ -116,5 +118,6 @@ def main():
 
         pygame.display.update()
         FPS.tick(30)
+        count +=1
 
 if __name__ == '__main__': main()
