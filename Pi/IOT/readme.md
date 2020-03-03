@@ -2,10 +2,11 @@
 1. **[VS Code](https://code.visualstudio.com/Download)**
     - W/ Azure iot extension
     - W/ Python 3.x and pip3  
-        Extensions 
+        Extensions (pip3 install ...)
         - paho-mqtt  
         - pyserial
         - pygame
+        - cantools
 1. **[Docker](https://hub.docker.com/)**
 1. **[Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)**(optional as you can just do the commands with the portal and VSCode)
     - Make sure to add iot extension `az extension add --name azure-cli-iot-ext`
@@ -28,15 +29,15 @@
     - [Gather Creation Scripts](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates#set-up-scripts)
     - [Create our Root Certificate](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates#create-root-ca-certificate)
     - [Create our IOT Edge Certificate](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates#create-iot-edge-device-ca-certificates)
-    - [Create our Device Certificate](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates#self-signed-certificates) (We only need to do one, no need for the secondary)
-    - [Verify Certificate on Azure](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates#ca-signed-certificates)
+    - ~~[Create our Device Certificate](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates#self-signed-certificates) (We only need to do one, no need for the secondary)~~ We dont need to do this, we are not using X.509 Certs.
+    - [Verify Certificate on Azure](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates#ca-signed-certificates) (upload full chain verification file)
 1. Now lets add our certificates to the IOT Edge config
     - open IOTEdge config file (linux: `/etc/iotedge/config.yaml`, windows: `C:\ProgramData\iotedge\config.yaml`)
     - set our 3 lines for certificates with locations ([msdn instructions](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-production-certificates#install-certificates-on-the-device)) **BE SURE THE SPACING IS CORRECT!**
-1. Restart IOT Edge and confirm it is running properly (Linux: )
+1. Restart IOT Edge and confirm it is running properly (Linux: `sudo systemctl restart iotedge` then `sudo watch systemctl status iotedge`)
 
 # Program Setup Process
-1. Add path_to_root_cert in `MQTT/MQTTDevice.py`
+1. Add path_to_root_cert in `MQTT/MQTTDevice.py` (seems like you should use the full chain of the device from 2 steps ago right after you verified with hub)
 1. Add edge_device_name in `MQTT/MQTTDevice.py`
 1. Add SAS token to `MQTT/MQTTDevice.py`
     - Generate device SAS token using VSCode (right click on device name and generate sas token)
@@ -46,6 +47,7 @@
 
 # Running Car Simulator
 1. Run `Car.py` file
+1. View on website or for now (volatile link)[https://rttweb20200224074329.azurewebsites.net/telemetry]
 
 
     
