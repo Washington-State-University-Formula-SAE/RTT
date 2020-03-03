@@ -47,7 +47,7 @@
 
 # Running Car Simulator
 1. Run `Car.py` file
-1. View on website or for now (volatile link)[https://rttweb20200224074329.azurewebsites.net/telemetry]
+1. View on website or for now [volatile link](https://rttweb20200224074329.azurewebsites.net/telemetry)
 
 
     
