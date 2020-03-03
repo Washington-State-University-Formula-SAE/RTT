@@ -15,6 +15,7 @@
 # IOT Setup Process
 1. Install IOT Edge ([Follow for your OS/Container OS](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-linux))([Raspberry pi 4](https://gist.github.com/nihil0/27f7693d066f54c9acc5df8f71f48d52))
 1. Connect IOT Edge to azure hub (should be in instructions above)
+1. You should now be able to see the IOT Edge device is connected in the azure portal. It may have a config not set message.
 1. Make Edge device a transparent gateway ([instructions](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-transparent-gateway))
 1. Create and link device (there are other ways of doing this...) **For this tutorial name it 'vehicleRPM'**
     1. run `az iot hub device-identity create --hub-name {Hub Name ie wsufsaeHub} --device-id {device name ie vehicleRPM}`
